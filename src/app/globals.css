@@ -7,16 +7,11 @@
   --font-bricolage: "Bricolage Grotesque", sans-serif;
 }
 
-/* CRITICAL FIX: 
-   Set the root background to Navy so there is ZERO white flash.
-   We also set foreground to white for global text readability.
-*/
 :root {
   --background: #0B1221; 
   --foreground: #ffffff;
 }
 
-/* Ensure the body actually uses these variables immediately */
 body {
   background-color: var(--background);
   color: var(--foreground);
@@ -25,8 +20,34 @@ body {
   margin: 0;
   padding: 0;
 }
+@layer utilities {
+  .call-btn-container {
+    @apply relative overflow-hidden bg-[#FFF9F6] rounded-full flex items-center p-1 pr-6 shadow-lg transition-all duration-500;
+    width: 200px;
+  }
 
-/* Helper class for your Material Symbols if you want them filled by default */
-.icon-filled {
-  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  .call-btn-slider {
+    @apply absolute inset-0 bg-primary left-0 w-0 h-full rounded-full transition-all duration-500 ease-[cubic-bezier(0.86,0,0.07,1)];
+    z-index: 0;
+  }
+
+  .call-btn-container:hover .call-btn-slider {
+    @apply w-full;
+  }
+
+  /* LTR Navigation Underline */
+  .nav-link-ltr {
+    @apply relative py-1 overflow-hidden;
+  }
+  .nav-link-ltr::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-[1px] bg-primary;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+  }
+  .nav-link-ltr:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
 }

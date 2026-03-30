@@ -1,13 +1,40 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation"; // Hook to detect active route
-import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const pathname = usePathname(); // Get current path
+  const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+  const menuRef = useRef(null);
+  const linksRef = useRef([]);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useGSAP(() => {
+    const menu = menuRef.current;
+    const links = linksRef.current.filter(Boolean);
+
+    if (isOpen) {
+      gsap.set(menu, { display: "flex" });
+      const tl = gsap.timeline();
+      tl.to(menu, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" })
+        .fromTo(links, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, stagger: 0.08 }, "-=0.3");
+      document.body.style.overflow = "hidden";
+    } else {
+      const tl = gsap.timeline({ onComplete: () => { gsap.set(menu, { display: "none" }); document.body.style.overflow = "unset"; } });
+      tl.to(links, { y: 20, opacity: 0, duration: 0.3, stagger: 0.05 })
+        .to(menu, { x: "100%", opacity: 0, duration: 0.4 }, "-=0.1");
+    }
+  }, { dependencies: [isOpen] });
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -16,145 +43,87 @@ export default function Navbar() {
     { name: "Contact Us", href: "/contact" },
   ];
 
-  const linkVariants = {
-    closed: { 
-      opacity: 0, 
-      y: 20,
-      transition: { duration: 0.3 } 
-    },
-    opened: (i) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: 0.1 + i * 0.1, duration: 0.5 },
-    }),
-  };
-
   return (
     <>
-      <nav className="absolute top-0 left-0 w-full z-[60] px-6 py-6 md:px-16 flex items-center justify-between bg-transparent">
-        {/* Logo */}
-        <div className="flex items-center">
-          <Image
-            src="/logo.svg"
-            alt="Yogeshwar Controls"
-            width={160}
-            height={45}
-            priority
-            className="h-auto"
-          />
-        </div>
+      <nav className="fixed top-0 left-0 w-full z-[100]">
+        <div className={`absolute inset-0 transition-all duration-400 ease-out -z-10 ${
+          isScrolled || isOpen ? "opacity-100 bg-navy/95 backdrop-blur-md border-b border-white/10 shadow-lg" : "opacity-0"
+        }`} />
 
-        {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center gap-10">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href;
-            return (
-              <Link
-                key={link.name}
-                href={link.href}
-                style={{ color: isActive ? "#FFDE42" : "white", borderColor: isActive ? "#FFDE42" : "transparent" }}
-                className={`font-medium hover:text-[#FFDE42] transition-colors pb-1 tracking-wide text-sm uppercase ${isActive ? "border-b-2" : ""}`}
-              >
+        <div className={`container mx-auto px-6 md:px-16 flex items-center justify-between transition-all duration-400 ${
+          isScrolled || isOpen ? "py-3" : "py-6"
+        }`}>
+          <Link href="/">
+            <Image src="/logo.svg" alt="Logo" width={140} height={36} priority className="h-auto" />
+          </Link>
+
+          {/* Desktop Links */}
+          <div className="hidden lg:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <Link key={link.name} href={link.href} className={`nav-link-ltr font-medium text-[18px] transition-colors ${
+                pathname === link.href ? "text-primary" : "text-white hover:text-primary"
+              }`}>
                 {link.name}
               </Link>
-            );
-          })}
-        </div>
-
-        <div className="flex items-center gap-6">
-          <div className="flex items-center gap-4">
-            <a
-              href="tel:+919924129959"
-              className="hidden sm:flex bg-white/95 backdrop-blur-sm rounded-full items-center p-1 pr-6 shadow-xl hover:scale-102 transition-transform active:scale-95 cursor-pointer group"
-            >
-              <div className="bg-[#FFDE42] rounded-full w-10 h-10 flex items-center justify-center mr-3 shadow-sm transition-colors ">
-                <span
-                  className="material-symbols-outlined icon-filled text-navy text-[20px]"
-                  style={{
-                    fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24",
-                  }}
-                >
-                  call
-                </span>
-              </div>
-              <div className="flex flex-col justify-center">
-                <span className="text-[9px] text-gray-500 font-bold uppercase leading-none mb-1">
-                  Enquiry Now
-                </span>
-                <span className="text-navy font-extrabold text-sm leading-none tracking-tight">
-                  +91 99241 29959
-                </span>
-              </div>
-            </a>
+            ))}
           </div>
 
-          {/* Animated Hamburger Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden flex flex-col justify-center items-center z-[70] w-10 h-10 relative focus:outline-none"
-            aria-label="Toggle Menu"
-          >
-            <span className={`block absolute h-0.5 w-7 bg-white transition-all duration-300 ease-in-out ${isOpen ? "rotate-45" : "-translate-y-2"}`} />
-            <span className={`block absolute h-0.5 w-7 bg-white transition-all duration-300 ease-in-out ${isOpen ? "opacity-0" : "opacity-100"}`} />
-            <span className={`block absolute h-0.5 w-7 bg-white transition-all duration-300 ease-in-out ${isOpen ? "-rotate-45" : "translate-y-2"}`} />
-          </button>
+          <div className="flex items-center gap-4 md:gap-6">
+            {/* Desktop Call Button */}
+            <div className="hidden lg:block">
+              <a href="tel:+919924129959" className="call-btn-container group">
+                <div className="call-btn-slider" />
+                <div className="relative z-20 bg-primary rounded-full w-10 h-10 flex items-center justify-center mr-3 group-hover:bg-white transition-colors">
+                  <span className="material-symbols-outlined text-navy text-[20px] group-hover:rotate-[15deg] transition-transform" style={{ fontVariationSettings: "'FILL' 1" }}>call</span>
+                </div>
+                <div className="flex flex-col relative z-10 overflow-hidden">
+                  <div className="h-[14px] overflow-hidden">
+                    <div className="flex flex-col transition-transform duration-300 group-hover:-translate-y-1/2">
+                      <span className="text-[10px] text-navy/80 font-medium h-[14px] flex items-center">Enquiry Now</span>
+                      <span className="text-[10px] text-navy/90 font-bold h-[14px] flex items-center">Call Us Today</span>
+                    </div>
+                  </div>
+                  <span className="text-navy font-bold text-[14px] mt-0.5">+91 99241 29959</span>
+                </div>
+              </a>
+            </div>
+
+            {/* NEW: Mobile Call Icon (appears next to hamburger) */}
+            <a href="tel:+919924129959" className="lg:hidden w-10 h-10 bg-primary rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-transform">
+               <span className="material-symbols-outlined text-navy text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>call</span>
+            </a>
+
+            {/* Hamburger Menu */}
+            <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden w-9 h-9 relative z-[110] flex items-center justify-center">
+              <span className={`block absolute h-0.5 w-6 bg-white transition-all duration-300 ${isOpen ? "rotate-45" : "-translate-y-1.5"}`} />
+              <span className={`block absolute h-0.5 w-6 bg-white transition-all duration-300 ${isOpen ? "opacity-0" : "opacity-100"}`} />
+              <span className={`block absolute h-0.5 w-6 bg-white transition-all duration-300 ${isOpen ? "-rotate-45" : "translate-y-1.5"}`} />
+            </button>
+          </div>
         </div>
       </nav>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="fixed inset-0 bg-navy/98 backdrop-blur-md z-[55] flex flex-col pt-40 px-10"
-          >
-            <div className="flex flex-col gap-10">
-              {navLinks.map((link, i) => {
-                const isActive = pathname === link.href;
-                return (
-                  <motion.div
-                    key={link.name}
-                    custom={i}
-                    variants={linkVariants}
-                    initial="closed"
-                    animate="opened"
-                    exit="closed"
-                  >
-                    <Link
-                      href={link.href}
-                      onClick={() => setIsOpen(false)}
-                      style={{ color: isActive ? "#FFDE42" : "white" }}
-                      className="text-4xl font-medium hover:text-[#FFDE42] transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  </motion.div>
-                );
-              })}
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                transition={{ delay: 0.5, duration: 0.4 }}
-                className="mt-6 pt-10 border-t border-white/10"
-              >
-                <p className="text-[#FFDE42] text-sm font-medium uppercase mb-2 tracking-wider">
-                  Call Us Today
-                </p>
-                <a
-                  href="tel:+919924129959"
-                  className="text-white text-3xl font-medium hover:text-[#FFDE42] transition-colors inline-block active:scale-95"
-                >
-                  +91 99241 29959
-                </a>
-              </motion.div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Mobile Menu Overlay */}
+      <div ref={menuRef} className="fixed inset-0 bg-navy z-[90] hidden flex-col justify-center px-10" style={{ transform: 'translateX(100%)', opacity: 0 }}>
+        <div className="flex flex-col gap-8 w-full">
+          {navLinks.map((link, i) => (
+            <Link key={link.name} href={link.href} ref={(el) => (linksRef.current[i] = el)} onClick={() => setIsOpen(false)}
+              className={`text-5xl font-medium tracking-tighter transition-colors duration-200 ${
+                pathname === link.href ? "text-primary" : "text-white hover:text-primary"
+              }`}>
+              {link.name}
+            </Link>
+          ))}
+          
+          <div ref={(el) => (linksRef.current[navLinks.length] = el)} className="mt-12 pt-8 border-t border-white/10 w-full">
+            <p className="text-primary text-sm font-medium uppercase mb-2 tracking-widest">Contact Support</p>
+            <a href="tel:+919924129959" className="text-white text-3xl font-bold tracking-tight flex items-center gap-3">
+              <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: "'FILL' 1" }}>call</span>
+              +91 99241 29959
+            </a>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

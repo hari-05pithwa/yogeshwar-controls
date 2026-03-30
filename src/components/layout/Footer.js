@@ -1,0 +1,163 @@
+"use client";
+import Link from "next/link";
+import Image from "next/image";
+
+export default function Footer() {
+  const socialLinks = [
+    {
+      name: "WhatsApp",
+      href: "https://wa.me/919924129959",
+      svg: "M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-4.821 4.754a8.117 8.117 0 0 1-4.077-1.102l-.294-.174-3.033.797.812-2.952-.191-.303A8.125 8.125 0 0 1 12 4.022a8.125 8.125 0 0 1 8.122 8.123 8.125 8.125 0 0 1-8.122 8.122zM12 2.169C6.573 2.169 2.167 6.575 2.167 12c0 1.733.45 3.36 1.238 4.777l-1.314 4.779 4.889-1.282A9.8 9.8 0 0 0 12 21.832c5.427 0 9.833-4.406 9.833-9.832 0-5.425-4.406-9.831-9.833-9.831z",
+    },
+    {
+      name: "Instagram",
+      href: "#",
+      svg: "M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.28.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.668-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z",
+    },
+    {
+      name: "Telegram",
+      href: "#",
+      svg: "M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0zM17.85 7.42l-2 9.42c-.15.67-.55.83-1.1.53l-3.05-2.25-1.47 1.42c-.16.16-.3.3-.6.3l.21-3.06 5.57-5.03c.24-.21-.05-.33-.37-.12l-6.88 4.33-2.96-.93c-.64-.2-.65-.64.14-.95l11.58-4.47c.54-.2.9.1.7.9z",
+    },
+  ];
+
+  const quickLinks = [
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/about" },
+    { name: "Contact Us", href: "/contact" },
+    { name: "Services", href: "/services" },
+  ];
+
+  return (
+    <footer className="bg-navy text-white py-16 px-10 md:px-16 lg:px-24 border-t border-white/5 font-bricolage">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-18 md:gap-8">
+        {/* Column 1: Branding */}
+        <div className="flex flex-col gap-8 items-start">
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/logo.svg"
+              alt="Yogeshwar Controls"
+              width={180}
+              height={50}
+              className="h-auto"
+            />
+          </Link>
+
+          <div className="flex gap-4">
+            {socialLinks.map((social) => (
+              <a
+                key={social.name}
+                href={social.href}
+                aria-label={social.name}
+                /* Increased container from w-10 to w-14 */
+                className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-all duration-300 group"
+              >
+                <svg
+                  /* Using a standard 24x24 viewBox for better scaling */
+                  viewBox="0 0 24 24"
+                  /* Increased icon size from w-5 to w-7 */
+                  className="w-7 h-7 fill-white group-hover:fill-navy transition-colors duration-300"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d={social.svg} />
+                </svg>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Column 2: Contact Info */}
+        <div className="flex flex-col gap-6">
+          <h3 className="text-primary text-lg font-bold tracking-tight">
+            Contact Us
+          </h3>
+
+          <div className="flex flex-col gap-6 text-sm">
+            {/* Mobile */}
+            <div className="flex items-start gap-4">
+              <div className="mt-1">
+                <svg className="w-5 h-5 fill-primary" viewBox="0 0 24 24">
+                  <path d="M6.62 10.79c1.44 2.82 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                </svg>
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <span className="font-bold text-white/40 uppercase text-[9px] tracking-[0.2em]">
+                  Mobile
+                </span>
+                <a
+                  href="tel:+919924129959"
+                  className="hover:text-primary transition-colors text-[15px] font-medium text-white"
+                >
+                  +91 99241 29959
+                </a>
+              </div>
+            </div>
+
+            {/* Email */}
+            <div className="flex items-start gap-4">
+              <div className="mt-1">
+                <svg className="w-5 h-5 fill-primary" viewBox="0 0 24 24">
+                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                </svg>
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <span className="font-bold text-white/40 uppercase text-[9px] tracking-[0.2em]">
+                  Email
+                </span>
+                <a
+                  href="mailto:yogeshwar.controls@yahoo.com"
+                  className="hover:text-primary transition-colors text-[15px] font-medium text-white"
+                >
+                  yogeshwar.controls@yahoo.com
+                </a>
+              </div>
+            </div>
+
+            {/* Address */}
+            <div className="flex items-start gap-4">
+              <div className="mt-1">
+                <svg className="w-5 h-5 fill-primary" viewBox="0 0 24 24">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z" />
+                </svg>
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <span className="font-bold text-white/40 uppercase text-[9px] tracking-[0.2em]">
+                  Address
+                </span>
+                <p className="text-[14px] leading-relaxed font-medium text-white/80 max-w-[280px]">
+                  30, Sarvoday Nagar-3, Patidar Chowk, K.K. Nagar, Ghatlodiya,
+                  Ahmedabad-380061
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Column 3: Links (Aligned Perfectly Under Heading) */}
+        <div className="flex flex-col gap-6 items-start">
+          <h3 className="text-primary text-lg font-bold tracking-tight">
+            Links
+          </h3>
+          <ul className="flex flex-col gap-3.5 items-start">
+            {quickLinks.map((link) => (
+              <li key={link.name}>
+                <Link
+                  href={link.href}
+                  className="text-white/60 hover:text-primary hover:translate-x-1 transition-all duration-300 text-[15px] font-medium block"
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {/* Bottom bar */}
+      <div className="container mx-auto mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[9px] text-white/30 uppercase tracking-[0.2em] font-bold">
+        <p>© 2026 Yogeshwar Controls. All Rights Reserved.</p>
+        <p className="text-white/10">Government Approved Licensed Contractor</p>
+      </div>
+    </footer>
+  );
+}

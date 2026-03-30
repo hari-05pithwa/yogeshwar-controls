@@ -17,9 +17,9 @@ export default function Services() {
 
   const scroll = (direction) => {
     if (scrollRef.current) {
-      const card = scrollRef.current.querySelector('.service-card');
+      const card = scrollRef.current.querySelector(".service-card");
       const cardWidth = card.clientWidth;
-      const gap = 24; 
+      const gap = 24;
       const scrollAmount = cardWidth + gap;
 
       scrollRef.current.scrollBy({
@@ -33,7 +33,6 @@ export default function Services() {
     /* Background changed to a very soft gray/white for section separation */
     <section className="bg-[#fafafa] py-20 md:py-28">
       <div className="container mx-auto px-0 md:px-16 lg:px-24">
-        
         {/* Section Header */}
         <div className="text-center mb-8 px-6">
           <h2 className="text-black text-3xl md:text-5xl font-black tracking-tight">
@@ -44,16 +43,16 @@ export default function Services() {
 
         {/* Carousel Container */}
         <div className="relative">
-          <div 
+          <div
             ref={scrollRef}
             className="flex gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-8 
-                       px-10 md:px-0" 
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                       px-10 md:px-0"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {services.map((service, index) => (
               <motion.div
                 key={index}
-             // Reduced from -10 to -5 for minimal lift
+                // Reduced from -10 to -5 for minimal lift
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 className="service-card 
                            min-w-[80%] sm:min-w-[45%] md:min-w-[32%] lg:min-w-[28%] 
@@ -72,13 +71,13 @@ export default function Services() {
 
                 {/* Dark gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-                
+
                 {/* Content Overlay */}
                 <div className="absolute bottom-10 left-8 right-8">
                   <h3 className="text-white text-2xl md:text-3xl font-bold mb-6 leading-tight tracking-tight">
                     {service.title}
                   </h3>
-                  
+
                   <div className="flex">
                     <Button>Explore</Button>
                   </div>
@@ -88,33 +87,33 @@ export default function Services() {
           </div>
 
           {/* Navigation Arrows */}
-<div className="flex justify-center gap-4 mt-12">
-  <button 
-    onClick={() => scroll("left")}
-    className="w-14 h-14 rounded-full bg-[#FFED98] flex items-center justify-center 
+          <div className="flex justify-center gap-4 mt-12">
+            <button
+              onClick={() => scroll("left")}
+              className="w-14 h-14 rounded-full bg-[#FFED98] flex items-center justify-center 
                hover:scale-105 active:scale-95 transition-all"
-  >
-    <span 
-      className="material-symbols-outlined text-black" 
-      style={{ fontVariationSettings: "'wght' 700" }} // This makes the icon bold
-    >
-      arrow_back
-    </span>
-  </button>
-  
-  <button 
-    onClick={() => scroll("right")}
-    className="w-14 h-14 rounded-full bg-[#FFED98] flex items-center justify-center 
+            >
+              <span
+                className="material-symbols-outlined text-black"
+                style={{ fontVariationSettings: "'wght' 700" }}
+              >
+                arrow_back
+              </span>
+            </button>
+
+            <button
+              onClick={() => scroll("right")}
+              className="w-14 h-14 rounded-full bg-[#FFED98] flex items-center justify-center 
                hover:scale-105 active:scale-95 transition-all"
-  >
-    <span 
-      className="material-symbols-outlined text-black" 
-      style={{ fontVariationSettings: "'wght' 700" }} // This makes the icon bold
-    >
-      arrow_forward
-    </span>
-  </button>
-</div>
+            >
+              <span
+                className="material-symbols-outlined text-black"
+                style={{ fontVariationSettings: "'wght' 700" }}
+              >
+                arrow_forward
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </section>
