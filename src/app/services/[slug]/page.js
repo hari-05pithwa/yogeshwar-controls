@@ -16,7 +16,7 @@ export default async function ServiceDetailPage({ params }) {
         <div className="w-24 h-1.5 bg-[#FFD982] mt-6 rounded-full"></div>
 
         <p className="mt-12 text-lg text-slate-600 leading-relaxed">
-          Detailed information about our <span className="font-bold text-[#c3d6ff]">{slug}</span> solutions for industrial environments will go here.
+          Detailed information about our <span className="font-bold text-[#ffffff]">{slug}</span> solutions for industrial environments will go here.
         </p>
       </div>
     </main>

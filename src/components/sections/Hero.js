@@ -1,5 +1,6 @@
 "use client";
 import { useRef } from "react";
+import Link from "next/link"; // Import Link from Next.js
 import Button from '../ui/Button';
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -58,7 +59,10 @@ export default function Hero() {
           </p>
           
           <div className="hero-reveal flex">
-            <Button>Explore Services</Button>
+            {/* Wrapped Button with Link to /services */}
+            <Link href="/services">
+              <Button>Explore Services</Button>
+            </Link>
           </div>
         </div>
       </div>

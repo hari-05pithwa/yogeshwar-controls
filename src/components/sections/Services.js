@@ -129,7 +129,7 @@ export default function Services() {
           <NavButton direction="right" onClick={() => scroll("right")} />
         </div>
 
-        <div className="explore-link flex justify-center mt-16 md:mt-20">
+        <div className="explore-link flex justify-center mt-16 md:mt-10">
           <Link 
             href="/services" 
             className="bg-[#FFD982] hover:bg-[#0B1221] hover:text-white text-[#0B1221] font-bold py-4 px-10 rounded-xl flex items-center justify-center gap-2 transition-all group shadow-lg active:scale-95"
