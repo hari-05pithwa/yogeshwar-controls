@@ -12,11 +12,11 @@ if (typeof window !== "undefined") {
 
 const services = [
   { title: "Electrical Installation", image: "/services/service1.jpg" },
-  { title: "Maintenance & AMC", image: "/services/service2.jpg" },
-  { title: "Switchgear Services", image: "/services/service3.jpg" },
+  { title: "Maintenance & AMC", image: "/services/service4.jpg" },
+  { title: "Switchgear Services", image: "/services/service1.jpg" },
   { title: "Transformer Services", image: "/services/service4.jpg" },
-  { title: "Energy Audit", image: "/services/service2.jpg" },
-  { title: "Automation & Repair", image: "/services/service3.jpg" },
+  { title: "Energy Audit", image: "/services/service1.jpg" },
+  { title: "Automation & Repair", image: "/services/service4.jpg" },
 ];
 
 export default function Services() {
