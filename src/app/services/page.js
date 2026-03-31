@@ -10,56 +10,16 @@ if (typeof window !== "undefined") {
 }
 
 const allServices = [
-  { 
-    title: "Electrical Installation", 
-    image: "/services/service1.jpg", 
-    slug: "electrical-installation" 
-  },
-  { 
-    title: "Maintenance & AMC", 
-    image: "/services/service2.jpg", 
-    slug: "maintenance-amc" 
-  },
-  { 
-    title: "Switchgear Services", 
-    image: "/services/service3.jpg", 
-    slug: "switchgear-services" 
-  },
-  { 
-    title: "Transformer Services", 
-    image: "/services/service4.jpg", 
-    slug: "transformer-services" 
-  },
-  { 
-    title: "Energy Audit", 
-    image: "/services/service5.jpg", 
-    slug: "energy-audit" 
-  },
-  { 
-    title: "Automation & Repair", 
-    image: "/services/service6.jpg", 
-    slug: "automation-repair" 
-  },
-  { 
-    title: "Electrical Testing & Calibration", 
-    image: "/services/service7.jpg", 
-    slug: "testing-calibration" 
-  },
-  { 
-    title: "Earthing & Safety", 
-    image: "/services/service8.jpg", 
-    slug: "earthing-safety" 
-  },
-  { 
-    title: "HT/LT Services", 
-    image: "/services/service9.jpg", 
-    slug: "ht-lt-services" 
-  },
-  { 
-    title: "Breakdown Support", 
-    image: "/services/service10.jpg", 
-    slug: "breakdown-support" 
-  },
+  { title: "Electrical Installation", image: "/services/service1.jpg", slug: "electrical-installation" },
+  { title: "Maintenance & AMC", image: "/services/service2.jpg", slug: "maintenance-amc" },
+  { title: "Switchgear Services", image: "/services/service3.jpg", slug: "switchgear-services" },
+  { title: "Transformer Services", image: "/services/service4.jpg", slug: "transformer-services" },
+  { title: "Energy Audit", image: "/services/service5.jpg", slug: "energy-audit" },
+  { title: "Automation & Repair", image: "/services/service6.jpg", slug: "automation-repair" },
+  { title: "Electrical Testing & Calibration", image: "/services/service7.jpg", slug: "testing-calibration" },
+  { title: "Earthing & Safety", image: "/services/service8.jpg", slug: "earthing-safety" },
+  { title: "HT/LT Services", image: "/services/service9.jpg", slug: "ht-lt-services" },
+  { title: "Breakdown Support", image: "/services/service10.jpg", slug: "breakdown-support" },
 ];
 
 export default function ServicesPage() {
@@ -68,7 +28,6 @@ export default function ServicesPage() {
   useGSAP(() => {
     const tl = gsap.timeline();
 
-    // Hero Text Entrance
     tl.from(".reveal-text", {
       y: 50,
       opacity: 0,
@@ -77,7 +36,6 @@ export default function ServicesPage() {
       ease: "power3.out",
     });
 
-    // Grid Items Reveal
     gsap.from(".service-item", {
       scrollTrigger: {
         trigger: ".services-grid",
@@ -94,7 +52,7 @@ export default function ServicesPage() {
   return (
     <main ref={containerRef} className="bg-white overflow-x-hidden">
       
-      {/* --- HERO SECTION: FULL SCREEN WITH VIDEO --- */}
+      {/* --- HERO SECTION --- */}
       <section className="relative min-h-screen flex items-center bg-[#0B1221] text-white pt-20">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <video
@@ -105,9 +63,7 @@ export default function ServicesPage() {
             className="w-full h-full object-cover opacity-50"
           >
             <source src="/hero-bg.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
           </video>
-          {/* Gradient for Legibility & Navbar stand-out */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#0B1221]/80 via-transparent to-[#0B1221]/60"></div>
         </div>
 
@@ -131,18 +87,24 @@ export default function ServicesPage() {
       </section>
 
       {/* --- SERVICES GRID SECTION --- */}
-      <section className="services-grid py-20 md:py-32 bg-white">
-        <div className="container mx-auto px-6 md:px-12 lg:px-24">
+      <section className="services-grid py-24 md:py-32 lg:py-40 bg-white">
+        <div className="container mx-auto px-8 md:px-20 lg:px-24">
           
-          <div className="mb-16">
-            <h2 className="text-[#0B1221] text-3xl md:text-5xl font-black uppercase tracking-tight">
+          <div className="mb-16 md:mb-24">
+            <h2 className="text-[#0B1221] text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-none">
               Industrial Solutions
             </h2>
-            <div className="h-1.5 w-20 bg-[#FFD982] mt-4"></div>
+            <div className="h-1.5 w-24 bg-[#FFD982] mt-6 md:mt-8"></div>
           </div>
 
-          {/* Grid: 1 col mobile, 2 tablet, 3 desktop */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+          {/* 
+              REFINED GRID LOGIC:
+              1. Mobile/Portrait Tablet (up to 1023px): 1 column (gives cards full width to breathe)
+              2. Landscape Tablet/Desktop (1024px+): 2 columns
+              3. Large Screens (1280px+): 3 columns
+              Added large gaps (gap-16) to ensure separation.
+          */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-12 md:gap-16 lg:gap-12 xl:gap-16">
             {allServices.map((service, index) => (
               <div key={index} className="service-item h-full">
                 <ServiceCard 
@@ -156,19 +118,19 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* --- CTA SECTION: TECHNICAL CONSULTATION --- */}
-      <section className="py-20 bg-[#F8F9FA]">
+      {/* --- CTA SECTION --- */}
+      <section className="py-24 md:py-32 bg-[#F8F9FA] border-t border-gray-100">
         <div className="container mx-auto px-6 text-center">
           <div className="max-w-3xl mx-auto">
-            <h3 className="text-[#0B1221] text-3xl md:text-5xl font-black uppercase mb-8 leading-tight">
+            <h3 className="text-[#0B1221] text-3xl md:text-5xl lg:text-6xl font-black uppercase mb-8 leading-tight tracking-tight">
               Need a Technical <span className="text-[#0B1221]">Evaluation?</span>
             </h3>
-            <p className="text-gray-500 font-bold text-lg mb-10">
+            <p className="text-gray-600 font-bold text-lg md:text-xl mb-12 leading-relaxed">
               Our engineering team provides comprehensive audits and breakdown support across industrial landscapes.
             </p>
             <a 
               href="/contact" 
-              className="inline-block bg-[#0B1221] text-[#FFD982] font-black uppercase tracking-widest px-12 py-5 rounded-full hover:bg-[#FFD982] hover:text-[#0B1221] transition-all duration-300 shadow-xl"
+              className="inline-block bg-[#0B1221] text-[#FFD982] font-black uppercase tracking-[0.2em] px-14 py-6 rounded-full hover:bg-[#FFD982] hover:text-[#0B1221] transition-all duration-300 shadow-xl text-sm md:text-base"
             >
               Get in Touch
             </a>

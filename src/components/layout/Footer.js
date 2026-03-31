@@ -29,10 +29,12 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-navy text-white py-16 px-10 md:px-16 lg:px-24 border-t border-white/5 font-bricolage">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-18 md:gap-8">
+    <footer className="bg-navy text-white py-16 px-6 md:px-16 lg:px-24 border-t border-white/5 font-bricolage">
+      <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 md:gap-x-12 lg:gap-16">
+        
         {/* Column 1: Branding */}
-        <div className="flex flex-col gap-8 items-start">
+        {/* For tablets (md), we keep it as 1 column width to prevent overcrowding */}
+        <div className="flex flex-col gap-8 items-start sm:col-span-2 md:col-span-1">
           <Link href="/" className="flex items-center">
             <Image
               src="/logo.svg"
@@ -49,14 +51,11 @@ export default function Footer() {
                 key={social.name}
                 href={social.href}
                 aria-label={social.name}
-                /* Increased container from w-10 to w-14 */
-                className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-all duration-300 group"
+                className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-all duration-300 group"
               >
                 <svg
-                  /* Using a standard 24x24 viewBox for better scaling */
                   viewBox="0 0 24 24"
-                  /* Increased icon size from w-5 to w-7 */
-                  className="w-7 h-7 fill-white group-hover:fill-navy transition-colors duration-300"
+                  className="w-6 h-6 md:w-7 md:h-7 fill-white group-hover:fill-navy transition-colors duration-300"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path d={social.svg} />
@@ -67,7 +66,7 @@ export default function Footer() {
         </div>
 
         {/* Column 2: Contact Info */}
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 sm:ml-4">
           <h3 className="text-primary text-lg font-bold tracking-tight">
             Contact Us
           </h3>
@@ -75,7 +74,7 @@ export default function Footer() {
           <div className="flex flex-col gap-6 text-sm">
             {/* Mobile */}
             <div className="flex items-start gap-4">
-              <div className="mt-1">
+              <div className="mt-1 shrink-0">
                 <svg className="w-5 h-5 fill-primary" viewBox="0 0 24 24">
                   <path d="M6.62 10.79c1.44 2.82 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
                 </svg>
@@ -95,7 +94,7 @@ export default function Footer() {
 
             {/* Email */}
             <div className="flex items-start gap-4">
-              <div className="mt-1">
+              <div className="mt-1 shrink-0">
                 <svg className="w-5 h-5 fill-primary" viewBox="0 0 24 24">
                   <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
                 </svg>
@@ -106,7 +105,7 @@ export default function Footer() {
                 </span>
                 <a
                   href="mailto:yogeshwar.controls@yahoo.com"
-                  className="hover:text-primary transition-colors text-[15px] font-medium text-white"
+                  className="hover:text-primary transition-colors text-[15px] font-medium text-white break-all md:break-normal"
                 >
                   yogeshwar.controls@yahoo.com
                 </a>
@@ -115,7 +114,7 @@ export default function Footer() {
 
             {/* Address */}
             <div className="flex items-start gap-4">
-              <div className="mt-1">
+              <div className="mt-1 shrink-0">
                 <svg className="w-5 h-5 fill-primary" viewBox="0 0 24 24">
                   <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z" />
                 </svg>
@@ -133,8 +132,8 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Column 3: Links (Aligned Perfectly Under Heading) */}
-        <div className="flex flex-col gap-6 items-start">
+        {/* Column 3: Links */}
+        <div className="flex flex-col gap-6 items-start sm:ml-24">
           <h3 className="text-primary text-lg font-bold tracking-tight">
             Links
           </h3>
@@ -154,9 +153,9 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="container mx-auto mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[9px] text-white/30 uppercase tracking-[0.2em] font-bold">
+      <div className="container mx-auto mt-16 md:mt-20 pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-6 text-[9px] text-white/30 uppercase tracking-[0.2em] font-bold text-center sm:text-left">
         <p>© 2026 Yogeshwar Controls. All Rights Reserved.</p>
-        <p className="text-white/10">Government Approved Licensed Contractor</p>
+        <p className="text-white/10 sm:text-right">Government Approved Licensed Contractor</p>
       </div>
     </footer>
   );
