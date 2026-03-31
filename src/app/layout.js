@@ -5,6 +5,7 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import NextTopLoader from 'nextjs-toploader'; // Import the loader
 
 const bricolage = Bricolage_Grotesque({ 
   subsets: ['latin'],
@@ -16,7 +17,6 @@ export default function RootLayout({ children }) {
   
   useGSAP(() => {
     // Reveal the Navbar
-    // Use .fromTo to be 100% explicit about the start and end states
     gsap.fromTo(".reveal-nav", 
       { 
         y: -100, 
@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
         duration: 1.2, 
         ease: "expo.out", 
         delay: 0.3,
-        clearProps: "transform" // This is CRITICAL: it removes GSAP styles after animation so fixed positioning works perfectly
+        clearProps: "transform" 
       }
     );
 
@@ -48,12 +48,25 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${bricolage.className} antialiased bg-[#0B1221] text-white`}>
         
-        {/* Added relative and z-index to wrapper to ensure it stays on top */}
+        {/* NEXT TOP LOADER CONFIGURATION */}
+        <NextTopLoader 
+          color="#FFD982" 
+          initialPosition={0.08}
+          crawlSpeed={200}
+          height={3}
+          crawl={true}
+          showSpinner={false}
+          easing="ease"
+          speed={200}
+          shadow="0 0 10px #FFD982,0 0 5px #FFD982"
+        />
+
         <div className="reveal-nav fixed top-0 left-0 w-full z-[110]">
           <Navbar />
         </div>
 
-        <main>{children}</main>
+        {/* Padding top added to main so content doesn't hide behind fixed navbar */}
+        <main className="min-h-screen">{children}</main>
 
         <Footer />
       </body>

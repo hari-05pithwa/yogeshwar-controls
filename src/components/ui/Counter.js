@@ -19,8 +19,17 @@ export default function GSAPCounter({
   const countRef = useRef(null);
 
   useEffect(() => {
+    // 1. Session check: Unique key for each counter based on its value/prefix
+    const sessionKey = `animated-${prefix}-${value}-${suffix}`;
+    const hasAlreadyAnimated = sessionStorage.getItem(sessionKey);
+
+    // 2. If it has already animated this session, set final value immediately and skip GSAP
+    if (hasAlreadyAnimated && countRef.current) {
+      countRef.current.innerText = value;
+      return;
+    }
+
     const ctx = gsap.context(() => {
-      // Create a dummy object to animate the value
       const countObj = { val: 0 };
 
       gsap.to(countObj, {
@@ -29,9 +38,13 @@ export default function GSAPCounter({
         ease: "power2.out",
         scrollTrigger: {
           trigger: scope.current,
-          start: "top 90%", // Starts when the top of element hits 90% of viewport height
+          start: "top 90%", 
           toggleActions: "play none none none",
-          once: true, // Animations plays only once as requested in your snippet
+          once: true, 
+          onEnter: () => {
+            // 3. Mark as animated in sessionStorage when the scroll trigger starts
+            sessionStorage.setItem(sessionKey, "true");
+          }
         },
         onUpdate: () => {
           if (countRef.current) {
@@ -41,11 +54,11 @@ export default function GSAPCounter({
       });
     }, scope);
 
-    return () => ctx.revert(); // Cleanup on unmount
-  }, [value, duration]);
+    return () => ctx.revert(); 
+  }, [value, duration, prefix, suffix]);
 
   return (
-    <span ref={scope}>
+    <span ref={scope} className="tabular-nums">
       {prefix}
       <span ref={countRef}>0</span>
       {suffix}

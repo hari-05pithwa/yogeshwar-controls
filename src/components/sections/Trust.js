@@ -1,41 +1,11 @@
 "use client";
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import { 
-  useInView, 
-  motion, 
-  useMotionValue, 
-  useSpring, 
-  useTransform 
-} from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-function Counter({ value }) {
-  const ref = useRef(null);
-  
-  // Changed to once: true so it never resets when scrolling back up
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const motionValue = useMotionValue(0);
-  
-  const springValue = useSpring(motionValue, {
-    damping: 80,   
-    stiffness: 80, 
-  });
-  
-  const displayValue = useTransform(springValue, (latest) => Math.round(latest));
-
-  useEffect(() => {
-    if (isInView) {
-      motionValue.set(value);
-    }
-    // Removed the 'else' reset logic to keep the number at its final value
-  }, [motionValue, value, isInView]);
-
-  return (
-    <span ref={ref}>
-      <motion.span>{displayValue}</motion.span>
-    </span>
-  );
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
 }
 
 const stats = [
@@ -47,16 +17,32 @@ const stats = [
 const logos = Array.from({ length: 16 }, (_, i) => `/logos/logo${i + 1}.jpeg`);
 
 export default function Trust() {
+  const marqueeRef = useRef(null);
+
+  useEffect(() => {
+    // Infinite Marquee Animation
+    const marquee = marqueeRef.current;
+    if (marquee) {
+      gsap.to(marquee, {
+        xPercent: -50,
+        repeat: -1,
+        duration: 40,
+        ease: "none",
+      });
+    }
+  }, []);
+
   return (
     <section className="bg-white py-14 md:py-32 overflow-hidden">
       <div className="container mx-auto px-8 md:px-20">
         
         {/* --- Stats Section --- */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mb-38">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mb-28 md:mb-38">
           {stats.map((stat, index) => (
             <div key={index} className="flex flex-col items-center text-center">
-              <h2 className="text-navy text-7xl md:text-8xl font-black mb-4 tracking-tighter">
-                <Counter value={stat.number} />{stat.suffix}
+              <h2 className="text-[#0B1221] text-7xl md:text-8xl font-black mb-4 tracking-tighter tabular-nums">
+                <StatCounter value={stat.number} />
+                {stat.suffix}
               </h2>
               <p className="text-gray-500 text-lg md:text-xl font-bold uppercase tracking-widest">
                 {stat.label}
@@ -67,23 +53,18 @@ export default function Trust() {
 
         {/* --- Trusted Partners Header --- */}
         <div className="text-center mb-8">
-          <h3 className="text-navy text-2xl md:text-3xl font-black relative inline-block">
+          <h3 className="text-[#0B1221] text-2xl md:text-3xl font-black relative inline-block">
             Trusted by Industry Leaders.
-            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-24 h-1 bg-primary rounded-full" />
+            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-24 h-1 bg-[#FFD982] rounded-full" />
           </h3>
         </div>
       </div>
 
       {/* --- Infinite Logo Marquee --- */}
-      <div className="relative flex mt-8 py-10">
-        <motion.div
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{
-            repeat: Infinity,
-            duration: 50, 
-            ease: "linear",
-          }}
-          className="flex flex-nowrap gap-12 md:gap-24 items-center whitespace-nowrap min-w-max px-12"
+      <div className="relative mt-8 py-10 overflow-hidden">
+        <div 
+          ref={marqueeRef}
+          className="flex whitespace-nowrap gap-12 md:gap-24 w-max px-12"
         >
           {[...logos, ...logos].map((logo, index) => (
             <div
@@ -99,8 +80,45 @@ export default function Trust() {
               />
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
+  );
+}
+
+// Internal GSAP Counter - Plays on every Refresh/Mount
+function StatCounter({ value }) {
+  const countRef = useRef(null);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    // Removed sessionKey and hasAnimated logic to ensure it plays every refresh
+
+    let ctx = gsap.context(() => {
+      const obj = { val: 0 };
+      gsap.to(obj, {
+        val: value,
+        duration: 2, // Slightly faster for better "snappiness" on refresh
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 90%",
+          once: true, // Only plays once as you scroll down, but restarts if you refresh
+        },
+        onUpdate: () => {
+          if (countRef.current) {
+            countRef.current.innerText = Math.floor(obj.val);
+          }
+        },
+      });
+    });
+
+    return () => ctx.revert();
+  }, [value]);
+
+  return (
+    <span ref={containerRef}>
+      <span ref={countRef}>0</span>
+    </span>
   );
 }

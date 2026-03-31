@@ -1,11 +1,12 @@
 "use client";
 import { useRef } from "react";
 import Image from "next/image";
+import Link from "next/link"; // Import Link
 import Button from "../ui/Button";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
-export default function ServiceCard({ title, image }) {
+export default function ServiceCard({ title, image, slug }) {
   const cardRef = useRef(null);
   const bgImageRef = useRef(null);
   const contentRef = useRef(null);
@@ -23,42 +24,46 @@ export default function ServiceCard({ title, image }) {
   });
 
   return (
-    <div
-      ref={cardRef}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      // snap-start ensures the card locks into place perfectly
-      className="service-card group relative min-w-[300px] md:min-w-[380px]
-                 aspect-[4/5] rounded-[35px] overflow-hidden snap-start 
-                 flex-shrink-0 shadow-lg cursor-pointer bg-[#0B1221]"
+    <Link 
+      href={`/services/${slug}`} 
+      className="block flex-shrink-0 snap-center md:snap-start"
     >
-      <div ref={bgImageRef} className="absolute inset-0 pointer-events-none">
-        <Image
-          src={image}
-          alt={title}
-          fill
-          className="object-cover"
-          // HD FIX: Large source sizes to prevent blurriness on Retina/4K screens
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
-          quality={95}
-          priority
-        />
-      </div>
+      <div
+        ref={cardRef}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        className="service-card group relative min-w-[300px] md:min-w-[380px]
+                   aspect-[4/5] rounded-[35px] overflow-hidden 
+                   shadow-lg cursor-pointer bg-[#0B1221]"
+      >
+        <div ref={bgImageRef} className="absolute inset-0 pointer-events-none">
+          <Image
+            src={image}
+            alt={title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
+            quality={95}
+            priority
+          />
+        </div>
 
-      {/* Smooth fade gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0B1221] via-[#0B1221]/40 to-transparent via-25% to-50% pointer-events-none z-10" />
+        {/* IMPROVED OVERLAY: High-Contrast Scrim */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0B1221]/90 from-5% via-[#0B1221]/50 via-35% to-transparent to-65% pointer-events-none z-10" />
 
-      <div ref={contentRef} className="absolute inset-x-0 bottom-0 p-8 z-20">
-        <h3 className="text-white text-xl md:text-2xl font-bold mb-6 leading-tight">
-          {title}
-        </h3>
+        <div ref={contentRef} className="absolute inset-x-0 bottom-0 p-8 z-20">
+          <h3 className="text-white text-xl md:text-2xl font-bold mb-6 leading-tight drop-shadow-md">
+            {title}
+          </h3>
 
-        <div className="flex">
-          <Button className="scale-90 origin-left !py-3">
-            Learn More
-          </Button>
+          <div className="flex">
+            {/* The button remains for visual cue, but the whole card is the link */}
+            <Button className="scale-90 origin-left !py-3 pointer-events-none">
+              Learn More
+            </Button>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

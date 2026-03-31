@@ -1,5 +1,6 @@
 "use client";
 import { useRef } from "react";
+import Link from "next/link";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ServiceCard from "../ui/ServiceCard";
 import gsap from "gsap";
@@ -10,13 +11,38 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+// 1. ADD SLUGS HERE
 const services = [
-  { title: "Electrical Installation", image: "/services/service1.jpg" },
-  { title: "Maintenance & AMC", image: "/services/service4.jpg" },
-  { title: "Switchgear Services", image: "/services/service1.jpg" },
-  { title: "Transformer Services", image: "/services/service4.jpg" },
-  { title: "Energy Audit", image: "/services/service1.jpg" },
-  { title: "Automation & Repair", image: "/services/service4.jpg" },
+  { 
+    title: "Electrical Installation", 
+    image: "/services/service1.jpg", 
+    slug: "electrical-installation" 
+  },
+  { 
+    title: "Maintenance & AMC", 
+    image: "/services/service2.jpg", 
+    slug: "maintenance-amc" 
+  },
+  { 
+    title: "Switchgear Services", 
+    image: "/services/service3.jpg", 
+    slug: "switchgear-services" 
+  },
+  { 
+    title: "Transformer Services", 
+    image: "/services/service4.jpg", 
+    slug: "transformer-services" 
+  },
+  { 
+    title: "Energy Audit", 
+    image: "/services/service5.jpg", 
+    slug: "energy-audit" 
+  },
+  { 
+    title: "Automation & Repair", 
+    image: "/services/service6.jpg", 
+    slug: "automation-repair" 
+  },
 ];
 
 export default function Services() {
@@ -24,17 +50,26 @@ export default function Services() {
   const containerRef = useRef(null);
 
   useGSAP(() => {
-    gsap.from(".service-card", {
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
         start: "top 80%",
-      },
+      }
+    });
+
+    tl.from(".service-card", {
       y: 40,
       opacity: 0,
       duration: 1,
       stagger: 0.1,
       ease: "power3.out",
-    });
+    })
+    .from(".explore-link", {
+      y: 20,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.out"
+    }, "-=0.6");
   }, { scope: containerRef });
 
   const scroll = (direction) => {
@@ -65,18 +100,12 @@ export default function Services() {
         </div>
 
         <div className="relative">
-          {/* Desktop Arrows */}
           <div className="hidden lg:flex absolute -left-20 top-1/2 -translate-y-1/2 z-30">
             <NavButton direction="left" onClick={() => scroll("left")} />
           </div>
 
           <div
             ref={scrollRef}
-            /* UPDATED CLASSES FOR MOBILE PEeking:
-               1. px-[15%] creates the side space on mobile
-               2. scroll-px-[15%] ensures snapping hits the center
-               3. md:px-2 resets padding for desktop
-            */
             className="flex gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory py-4 px-[15%] scroll-px-[15%] md:px-2 md:scroll-px-0 scroll-smooth"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
@@ -85,6 +114,7 @@ export default function Services() {
                 key={index} 
                 title={service.title} 
                 image={service.image} 
+                slug={service.slug} // 2. PASS SLUG TO CARD
               />
             ))}
           </div>
@@ -94,10 +124,23 @@ export default function Services() {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         <div className="flex lg:hidden justify-center gap-6 mt-10">
           <NavButton direction="left" onClick={() => scroll("left")} />
           <NavButton direction="right" onClick={() => scroll("right")} />
+        </div>
+
+        <div className="explore-link flex justify-center mt-16 md:mt-20">
+          <Link 
+            href="/services" 
+            className="bg-[#FFD982] hover:bg-[#0B1221] hover:text-white text-[#0B1221] font-bold py-4 px-10 rounded-xl flex items-center justify-center gap-2 transition-all group shadow-lg active:scale-95"
+          >
+            <span className="tracking-widest text-sm">
+              Explore All Services
+            </span>
+            <span className="material-symbols-outlined transition-transform group-hover:translate-x-1">
+              arrow_forward
+            </span>
+          </Link>
         </div>
       </div>
     </section>
