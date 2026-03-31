@@ -1,121 +1,120 @@
 "use client";
 import { useRef } from "react";
-import { motion } from "framer-motion";
-import Image from "next/image";
-import Button from "../ui/Button";
+import SectionHeader from "@/components/ui/SectionHeader";
+import ServiceCard from "../ui/ServiceCard";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const services = [
-  { title: "Preventive Maintenance", image: "/hero-bg.jpg" },
-  { title: "High Voltage Distribution", image: "/hero-bg.jpg" },
-  { title: "Industrial Automation", image: "/hero-bg.jpg" },
-  { title: "Panel Board Manufacturing", image: "/hero-bg.jpg" },
-  { title: "Electrical Energy Audits", image: "/hero-bg.jpg" },
+  { title: "Electrical Installation", image: "/services/service1.jpg" },
+  { title: "Maintenance & AMC", image: "/services/service2.jpg" },
+  { title: "Switchgear Services", image: "/services/service3.jpg" },
+  { title: "Transformer Services", image: "/services/service4.jpg" },
+  { title: "Energy Audit", image: "/services/service2.jpg" },
+  { title: "Automation & Repair", image: "/services/service3.jpg" },
 ];
 
 export default function Services() {
   const scrollRef = useRef(null);
+  const containerRef = useRef(null);
+
+  useGSAP(() => {
+    gsap.from(".service-card", {
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 80%",
+      },
+      y: 40,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.1,
+      ease: "power3.out",
+    });
+  }, { scope: containerRef });
 
   const scroll = (direction) => {
     if (scrollRef.current) {
-      const card = scrollRef.current.querySelector(".service-card");
-      const cardWidth = card.clientWidth;
-      const gap = 24;
-      const scrollAmount = cardWidth + gap;
-
-      scrollRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth",
-      });
+      const container = scrollRef.current;
+      const card = container.querySelector(".service-card");
+      if (card) {
+        const cardWidth = card.offsetWidth;
+        const gap = 24; 
+        const scrollAmount = cardWidth + gap; 
+        container.scrollBy({
+          left: direction === "left" ? -scrollAmount : scrollAmount,
+          behavior: "smooth",
+        });
+      }
     }
   };
 
   return (
-    /* Background changed to a very soft gray/white for section separation */
-    <section className="bg-[#fafafa] py-20 md:py-28">
-      <div className="container mx-auto px-0 md:px-16 lg:px-24">
-        {/* Section Header */}
-        <div className="text-center mb-8 px-6">
-          <h2 className="text-black text-3xl md:text-5xl font-black tracking-tight">
-            Our Core Services
-          </h2>
-          <div className="w-16 h-1 bg-primary mx-auto mt-4 rounded-full opacity-50" />
+    <section ref={containerRef} className="py-20 md:py-28 bg-[#F8F9FA] overflow-hidden">
+      <div className="container mx-auto px-0 md:px-16 lg:px-24 relative">
+        
+        <div className="max-w-3xl mx-auto mb-12 text-center px-6">
+          <SectionHeader 
+            title="Our Core Services" 
+            subtitle="Expert electrical solutions tailored for industrial excellence and safety."
+          />
         </div>
 
-        {/* Carousel Container */}
         <div className="relative">
+          {/* Desktop Arrows */}
+          <div className="hidden lg:flex absolute -left-20 top-1/2 -translate-y-1/2 z-30">
+            <NavButton direction="left" onClick={() => scroll("left")} />
+          </div>
+
           <div
             ref={scrollRef}
-            className="flex gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-8 
-                       px-10 md:px-0"
+            /* UPDATED CLASSES FOR MOBILE PEeking:
+               1. px-[15%] creates the side space on mobile
+               2. scroll-px-[15%] ensures snapping hits the center
+               3. md:px-2 resets padding for desktop
+            */
+            className="flex gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory py-4 px-[15%] scroll-px-[15%] md:px-2 md:scroll-px-0 scroll-smooth"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {services.map((service, index) => (
-              <motion.div
-                key={index}
-                // Reduced from -10 to -5 for minimal lift
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="service-card 
-                           min-w-[80%] sm:min-w-[45%] md:min-w-[32%] lg:min-w-[28%] 
-                           aspect-[4/5] relative rounded-[45px] overflow-hidden 
-                           snap-center md:snap-start flex-shrink-0 shadow-lg group cursor-pointer"
-              >
-                {/* Image with very subtle hover zoom */}
-                <div className="absolute inset-0 transition-transform duration-1000 group-hover:scale-105">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-
-                {/* Dark gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-
-                {/* Content Overlay */}
-                <div className="absolute bottom-10 left-8 right-8">
-                  <h3 className="text-white text-2xl md:text-3xl font-bold mb-6 leading-tight tracking-tight">
-                    {service.title}
-                  </h3>
-
-                  <div className="flex">
-                    <Button>Explore</Button>
-                  </div>
-                </div>
-              </motion.div>
+              <ServiceCard 
+                key={index} 
+                title={service.title} 
+                image={service.image} 
+              />
             ))}
           </div>
 
-          {/* Navigation Arrows */}
-          <div className="flex justify-center gap-4 mt-12">
-            <button
-              onClick={() => scroll("left")}
-              className="w-14 h-14 rounded-full bg-[#FFED98] flex items-center justify-center 
-               hover:scale-105 active:scale-95 transition-all"
-            >
-              <span
-                className="material-symbols-outlined text-black"
-                style={{ fontVariationSettings: "'wght' 700" }}
-              >
-                arrow_back
-              </span>
-            </button>
-
-            <button
-              onClick={() => scroll("right")}
-              className="w-14 h-14 rounded-full bg-[#FFED98] flex items-center justify-center 
-               hover:scale-105 active:scale-95 transition-all"
-            >
-              <span
-                className="material-symbols-outlined text-black"
-                style={{ fontVariationSettings: "'wght' 700" }}
-              >
-                arrow_forward
-              </span>
-            </button>
+          <div className="hidden lg:flex absolute -right-20 top-1/2 -translate-y-1/2 z-30">
+            <NavButton direction="right" onClick={() => scroll("right")} />
           </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        <div className="flex lg:hidden justify-center gap-6 mt-10">
+          <NavButton direction="left" onClick={() => scroll("left")} />
+          <NavButton direction="right" onClick={() => scroll("right")} />
         </div>
       </div>
     </section>
+  );
+}
+
+function NavButton({ direction, onClick }) {
+  return (
+    <button
+      onClick={onClick}
+      className="w-14 h-14 rounded-full bg-[#0B1221] border border-white/10 flex items-center justify-center 
+                 hover:bg-[#FFD982] transition-all duration-300 
+                 shadow-2xl active:scale-95 group z-40"
+    >
+      <span className="material-symbols-outlined text-[#FFD982] group-hover:text-[#0B1221] transition-colors text-[32px] font-bold">
+        {direction === "left" ? "chevron_left" : "chevron_right"}
+      </span>
+    </button>
   );
 }

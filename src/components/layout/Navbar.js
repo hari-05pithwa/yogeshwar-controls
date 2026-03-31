@@ -108,7 +108,7 @@ export default function Navbar() {
         <div className="flex flex-col gap-8 w-full">
           {navLinks.map((link, i) => (
             <Link key={link.name} href={link.href} ref={(el) => (linksRef.current[i] = el)} onClick={() => setIsOpen(false)}
-              className={`text-5xl font-medium tracking-tighter transition-colors duration-200 ${
+              className={`text-4xl font-medium tracking-tighter transition-colors duration-200 ${
                 pathname === link.href ? "text-primary" : "text-white hover:text-primary"
               }`}>
               {link.name}
@@ -117,7 +117,7 @@ export default function Navbar() {
           
           <div ref={(el) => (linksRef.current[navLinks.length] = el)} className="mt-12 pt-8 border-t border-white/10 w-full">
             <p className="text-primary text-sm font-medium uppercase mb-2 tracking-widest">Contact Support</p>
-            <a href="tel:+919924129959" className="text-white text-3xl font-bold tracking-tight flex items-center gap-3">
+            <a href="tel:+919924129959" className="text-white text-3xl font-medium tracking-tight flex items-center gap-3">
               <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: "'FILL' 1" }}>call</span>
               +91 99241 29959
             </a>

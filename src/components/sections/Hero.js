@@ -1,6 +1,5 @@
 "use client";
 import { useRef } from "react";
-import Image from 'next/image';
 import Button from '../ui/Button';
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -11,34 +10,40 @@ export default function Hero() {
   useGSAP(() => {
     const tl = gsap.timeline({ defaults: { ease: "expo.out", duration: 1.5 } });
 
-    // 1. Background Image Zoom & Fade
-    tl.from(".hero-bg", {
-      scale: 1.2,
+    // 1. Video Fade & Zoom Effect
+    tl.from(".hero-video-container", {
+      scale: 1.1,
       opacity: 0,
       duration: 2.5,
     }, 0);
 
-    // 2. Content Stagger (Title, Paragraph, Button)
+    // 2. Content Stagger
     tl.from(".hero-reveal", {
       y: 60,
       opacity: 0,
       stagger: 0.2,
-    }, 0.6); // Starts during the background fade
+    }, 0.6);
 
   }, { scope });
 
   return (
     <section ref={scope} className="relative w-full h-screen flex items-end pb-24 md:pb-32 overflow-hidden bg-[#080f20]">
-      {/* Background Image Layer */}
-      <div className="hero-bg absolute inset-0 z-0">
-        <Image 
-          src="/hero-bg.jpg" 
-          alt="Worksite" 
-          fill 
-          className="object-cover opacity-30" 
-          priority 
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0B1221] via-transparent to-transparent" />
+      
+      {/* Background Video Layer */}
+      <div className="hero-video-container absolute inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover opacity-40"
+        >
+          <source src="/hero-bg.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        
+        {/* Deep Overlay Gradient for Text Contrast */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0B1221] via-[#0B1221]/40 to-transparent" />
       </div>
 
       <div className="container mx-auto px-8 md:px-20 relative z-10">
