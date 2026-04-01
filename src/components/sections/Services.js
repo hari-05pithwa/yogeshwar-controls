@@ -15,32 +15,32 @@ if (typeof window !== "undefined") {
 const services = [
   { 
     title: "Electrical Installation", 
-    image: "/services/service1.jpg", 
+    image: "/services/service1.jpeg", 
     slug: "electrical-installation" 
   },
   { 
     title: "Maintenance & AMC", 
-    image: "/services/service2.jpg", 
+    image: "/services/service2.jpeg", 
     slug: "maintenance-amc" 
   },
   { 
     title: "Switchgear Services", 
-    image: "/services/service3.jpg", 
+    image: "/services/service3.jpeg", 
     slug: "switchgear-services" 
   },
   { 
     title: "Transformer Services", 
-    image: "/services/service4.jpg", 
+    image: "/services/service4.jpeg", 
     slug: "transformer-services" 
   },
   { 
     title: "Energy Audit", 
-    image: "/services/service5.jpg", 
+    image: "/services/service5.jpeg", 
     slug: "energy-audit" 
   },
   { 
     title: "Automation & Repair", 
-    image: "/services/service6.jpg", 
+    image: "/services/service6.jpeg", 
     slug: "automation-repair" 
   },
 ];
