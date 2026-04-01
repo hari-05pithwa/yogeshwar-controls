@@ -128,7 +128,7 @@ export default function ContactPage() {
                       mail
                     </span>
                   </div>
-                  <span className="text-[#0B1221] font-black text-lg md:text-2xl tracking-tighter break-all">
+                  <span className="text-[#0B1221] font-black text-[16px] md:text-2xl tracking-tighter break-all">
                     yogeshwar.controls@yahoo.com
                   </span>
                 </a>
@@ -177,21 +177,23 @@ export default function ContactPage() {
       </section>
 
       {/* --- MAP SECTION --- */}
-      <section className="bg-white pb-16">
-        <div className="container mx-auto px-6 md:px-12 lg:px-24">
-          <div className="rounded-[2rem] md:rounded-[2.5rem] overflow-hidden h-[350px] md:h-[450px] border border-gray-100 shadow-sm transition-all duration-700">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.051390457631!2d72.5513254!3d23.0585863!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e848602900001%3A0xc03e659359e995f9!2sShahpur%20Chakla%2C%20Ahmedabad!5e0!3m2!1sen!2sin!4v1711893000000!5m2!1sen!2sin"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              title="Office Location"
-            ></iframe>
-          </div>
-        </div>
-      </section>
+     {/* --- MAP SECTION --- */}
+<section className="bg-white pb-16">
+  <div className="container mx-auto px-6 md:px-12 lg:px-24">
+    <div className="rounded-[2rem] md:rounded-[2.5rem] overflow-hidden h-[350px] md:h-[450px] border border-gray-100 shadow-sm transition-all duration-700">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.603099951664!2d72.577073076045!3d23.03833441574706!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e854e720eaccf%3A0xa759b6cb0da46efe!2sMahavir%20flat!5e0!3m2!1sen!2sin!4v1711980000000!5m2!1sen!2sin"
+        width="100%"
+        height="100%"
+        style={{ border: 0 }}
+        allowFullScreen=""
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        title="Office Location"
+      ></iframe>
+    </div>
+  </div>
+</section>
     </main>
   );
 }

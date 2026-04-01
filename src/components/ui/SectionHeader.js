@@ -21,7 +21,7 @@ const SectionHeader = ({
       
       {/* Optional Subtitle */}
       {subtitle && (
-        <p className="mt-4 text-slate-500 text-lg max-w-2xl mx-auto">
+        <p className="mt-4 text-slate-500 text-[14px] max-w-2xl mx-auto md:text-xl">
           {subtitle}
         </p>
       )}
