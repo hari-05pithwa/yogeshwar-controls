@@ -10,14 +10,14 @@ if (typeof window !== "undefined") {
 }
 
 const allServices = [
-  { title: "Electrical Installation", image: "/services/service1.jpg", slug: "electrical-installation" },
-  { title: "Maintenance & AMC", image: "/services/service2.jpg", slug: "maintenance-amc" },
-  { title: "Switchgear Services", image: "/services/service3.jpg", slug: "switchgear-services" },
-  { title: "Transformer Services", image: "/services/service4.jpg", slug: "transformer-services" },
-  { title: "Energy Audit", image: "/services/service5.jpg", slug: "energy-audit" },
-  { title: "Automation & Repair", image: "/services/service6.jpg", slug: "automation-repair" },
-  { title: "Electrical Testing & Calibration", image: "/services/service7.jpg", slug: "testing-calibration" },
-  { title: "Earthing & Safety", image: "/services/service8.jpg", slug: "earthing-safety" },
+  { title: "Electrical Installation", image: "/services/service1.jpeg", slug: "electrical-installation" },
+  { title: "Maintenance & AMC", image: "/services/service2.jpeg", slug: "maintenance-amc" },
+  { title: "Switchgear Services", image: "/services/service3.jpeg", slug: "switchgear-services" },
+  { title: "Transformer Services", image: "/services/service4.jpeg", slug: "transformer-services" },
+  { title: "Energy Audit", image: "/services/service5.jpeg", slug: "energy-audit" },
+  { title: "Automation & Repair", image: "/services/service6.jpeg", slug: "automation-repair" },
+  { title: "Electrical Testing & Calibration", image: "/services/service7.jpeg", slug: "testing-calibration" },
+  { title: "Earthing & Safety", image: "/services/service8.jpeg", slug: "earthing-safety" },
   { title: "HT/LT Services", image: "/services/service9.jpg", slug: "ht-lt-services" },
   { title: "Breakdown Support", image: "/services/service10.jpg", slug: "breakdown-support" },
 ];
