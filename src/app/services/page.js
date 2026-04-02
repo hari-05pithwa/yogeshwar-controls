@@ -53,32 +53,33 @@ export default function ServicesPage() {
     <main ref={containerRef} className="bg-white overflow-x-hidden">
       
       {/* --- HERO SECTION --- */}
-      <section className="relative min-h-[80vh] flex items-center bg-[#0B1221] text-white pt-20">
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-50">
-            <source src="/hero-bg.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0B1221]/80 via-transparent to-[#0B1221]/60"></div>
-        </div>
+{/* Changed min-h-[80vh] to min-h-screen to ensure full mobile coverage */}
+<section className="relative min-h-screen flex items-center bg-[#0B1221] text-white pt-20">
+  <div className="absolute inset-0 z-0 overflow-hidden">
+    <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-50">
+      <source src="/hero-bg.mp4" type="video/mp4" />
+    </video>
+    <div className="absolute inset-0 bg-gradient-to-b from-[#0B1221]/80 via-transparent to-[#0B1221]/60"></div>
+  </div>
 
-        <div className="container mx-auto px-6 md:px-12 lg:px-24 relative z-10">
-          <div className="max-w-4xl reveal-text">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="h-[2px] w-12 bg-[#FFD982]"></div>
-              <span className="text-[#FFD982] font-bold uppercase tracking-[0.3em] text-xs md:text-sm">
-                Our Expertise
-              </span>
-            </div>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-[1.1] mb-6">
-              Specialized <br /> 
-              <span className="text-[#FFD982]">Engineering.</span>
-            </h1>
-            <p className="text-gray-300 text-base md:text-lg lg:text-xl leading-relaxed max-w-2xl font-medium">
-              Delivering high-performance industrial electrical solutions. We ensure your plant's power remains uninterrupted through certified excellence.
-            </p>
-          </div>
-        </div>
-      </section>
+  <div className="container mx-auto px-6 md:px-12 lg:px-24 relative z-10">
+    <div className="max-w-4xl reveal-text">
+      <div className="flex items-center gap-3 mb-6">
+        <div className="h-[2px] w-12 bg-[#FFD982]"></div>
+        <span className="text-[#FFD982] font-bold uppercase tracking-[0.3em] text-xs md:text-sm">
+          Our Expertise
+        </span>
+      </div>
+      <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-[1.1] mb-6">
+        Specialized <br /> 
+        <span className="text-[#FFD982]">Engineering.</span>
+      </h1>
+      <p className="text-gray-300 text-base md:text-lg lg:text-xl leading-relaxed max-w-2xl font-medium">
+        Delivering high-performance industrial electrical solutions. We ensure your plant's power remains uninterrupted through certified excellence.
+      </p>
+    </div>
+  </div>
+</section>
 
       {/* --- SERVICES GRID SECTION --- */}
       <section className="services-grid py-20 md:py-32 bg-white">
