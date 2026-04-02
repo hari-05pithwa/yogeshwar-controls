@@ -198,26 +198,33 @@ export default function ServiceDetailPage({ params }) {
       </section>
 
       {/* --- GET QUOTE SECTION --- */}
-      <section className="bg-[#F8F9FA] pb-16 md:pb-32 px-6 md:px-16 lg:px-24">
-        <div className="container mx-auto">
-          <div className="bg-[#0B1221] rounded-[2.5rem] md:rounded-[4rem] p-10 md:p-20 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-10 relative overflow-hidden group border border-white/5">
-            <div className="relative z-10 max-w-2xl">
-              <h3 className="text-white text-3xl md:text-5xl font-bold tracking-tight mb-4 leading-tight">
-                Ready to power your project?
-              </h3>
-              <p className="text-white/60 text-base md:text-lg font-medium">
-                Contact our engineering team today for a technical evaluation and a comprehensive quote tailored to your facility.
-              </p>
-            </div>
-            
-            <div className="relative z-10 shrink-0">
-              <Link href="/contact" className="inline-block bg-[#FFD982] text-[#0B1221] font-bold uppercase tracking-[0.2em] px-12 py-6 rounded-full hover:bg-white transition-all duration-500 shadow-2xl active:scale-95 text-sm md:text-base">
-                Get a quote
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+    <section className="bg-[#F8F9FA] pb-16 md:pb-32 px-6 md:px-16 lg:px-24">
+  <div className="container mx-auto">
+    {/* Changed md:flex-row to lg:flex-row. 
+        Now:
+        - Mobile & iPad (md): Vertical stack (flex-col)
+        - Desktop (lg): Side-by-side (flex-row)
+    */}
+    <div className="bg-[#0B1221] rounded-[2.5rem] md:rounded-[4rem] p-10 md:p-20 text-center lg:text-left flex flex-col lg:flex-row items-center justify-between gap-10 relative overflow-hidden group border border-white/5">
+      
+      <div className="relative z-10 max-w-2xl">
+        <h3 className="text-white text-3xl md:text-5xl font-bold tracking-tight mb-4 leading-tight">
+          Ready to power your project?
+        </h3>
+        <p className="text-white/60 text-base md:text-lg font-medium">
+          Contact our engineering team today for a technical evaluation and a comprehensive quote tailored to your facility.
+        </p>
+      </div>
+      
+      <div className="relative z-10 shrink-0">
+        <Link href="/contact" className="inline-block bg-[#FFD982] text-[#0B1221] font-bold uppercase tracking-[0.2em] px-12 py-6 rounded-full hover:bg-white transition-all duration-500 shadow-2xl active:scale-95 text-sm md:text-base">
+          Get a quote
+        </Link>
+      </div>
+
+    </div>
+  </div>
+</section>
     </main>
   );
 }

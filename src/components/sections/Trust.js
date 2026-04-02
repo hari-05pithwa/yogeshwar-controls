@@ -35,16 +35,19 @@ export default function Trust() {
   return (
     <section className="bg-white py-14 md:py-32 overflow-hidden">
       <div className="container mx-auto px-8 md:px-20">
-        
         {/* --- Stats Section --- */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mb-28 md:mb-38">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-24 lg:gap-16 mb-28 md:mb-38">
           {stats.map((stat, index) => (
             <div key={index} className="flex flex-col items-center text-center">
-              <h2 className="text-[#0B1221] text-7xl md:text-8xl font-black mb-4 tracking-tighter tabular-nums">
+              {/* text-7xl: Mobile size
+          md:text-6xl: Smaller size specifically for iPad
+          lg:text-8xl: Reverts to large size for Desktop
+      */}
+              <h2 className="text-[#0B1221] text-7xl md:text-6xl lg:text-8xl font-black mb-4 tracking-tighter tabular-nums">
                 <StatCounter value={stat.number} />
                 {stat.suffix}
               </h2>
-              <p className="text-gray-500 text-lg md:text-xl font-bold uppercase tracking-widest">
+              <p className="text-gray-500 text-lg md:text-sm font-bold uppercase tracking-widest whitespace-nowrap">
                 {stat.label}
               </p>
             </div>
@@ -62,7 +65,7 @@ export default function Trust() {
 
       {/* --- Infinite Logo Marquee --- */}
       <div className="relative mt-8 py-10 overflow-hidden">
-        <div 
+        <div
           ref={marqueeRef}
           className="flex whitespace-nowrap gap-12 md:gap-24 w-max px-12"
         >

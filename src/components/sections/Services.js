@@ -11,7 +11,6 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-// 1. ADD SLUGS HERE
 const services = [
   { 
     title: "Electrical Installation", 
@@ -100,13 +99,22 @@ export default function Services() {
         </div>
 
         <div className="relative">
+          {/* Desktop Arrows - Still hidden below lg to match your preference */}
           <div className="hidden lg:flex absolute -left-20 top-1/2 -translate-y-1/2 z-30">
             <NavButton direction="left" onClick={() => scroll("left")} />
           </div>
 
           <div
             ref={scrollRef}
-            className="flex gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory py-4 px-[15%] scroll-px-[15%] md:px-2 md:scroll-px-0 scroll-smooth"
+            className={`
+              flex gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory py-4 scroll-smooth
+              /* Mobile: Centered with 15% peek */
+              px-[15%] scroll-px-[15%] 
+              /* iPad (Tablet): Centered with 25% peek to show side cards */
+              md:px-[25%] md:scroll-px-[25%] 
+              /* Desktop: Aligned to container */
+              lg:px-2 lg:scroll-px-0
+            `}
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {services.map((service, index) => (
@@ -114,7 +122,7 @@ export default function Services() {
                 key={index} 
                 title={service.title} 
                 image={service.image} 
-                slug={service.slug} // 2. PASS SLUG TO CARD
+                slug={service.slug} 
               />
             ))}
           </div>
@@ -124,6 +132,7 @@ export default function Services() {
           </div>
         </div>
 
+        {/* Navigation buttons for Mobile and iPad */}
         <div className="flex lg:hidden justify-center gap-6 mt-10">
           <NavButton direction="left" onClick={() => scroll("left")} />
           <NavButton direction="right" onClick={() => scroll("right")} />

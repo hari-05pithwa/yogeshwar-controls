@@ -206,40 +206,50 @@ export default function About() {
       </section>
 
       {/* --- VISION SECTION --- */}
-      <section className="vision-section py-24 md:py-40 bg-white relative overflow-hidden">
-        <div className="container mx-auto px-6 md:px-16 lg:px-24">
-          <div className="text-center mb-16 md:mb-24">
-            <SectionHeader 
-                title="Vision & Quality" 
-                subtitle="Setting the gold standard in electrical engineering since our inception." 
-            />
-          </div>
+     <section className="vision-section py-24 md:py-40 bg-white relative overflow-hidden">
+  <div className="container mx-auto px-6 md:px-16 lg:px-24">
+    <div className="text-center mb-16 md:mb-24">
+      <SectionHeader 
+          title="Vision & Quality" 
+          subtitle="Setting the gold standard in electrical engineering since our inception." 
+      />
+    </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-stretch">
-            <div className="vision-card bg-[#F8F9FA] p-10 md:p-16 rounded-[40px] md:rounded-[70px] border border-gray-100 transition-all duration-500 flex flex-col group">
-              <div className="float-icon w-16 h-16 md:w-20 md:h-20 bg-[#0B1221] rounded-[25px] flex items-center justify-center mb-10 shadow-lg shadow-[#0B1221]/20 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-[#FFD982] text-3xl md:text-4xl">verified</span>
-              </div>
-              <h4 className="text-2xl md:text-4xl font-black text-[#0B1221] mb-6 uppercase tracking-tighter">Quality Standards</h4>
-              <p className="text-gray-500 text-base md:text-lg leading-relaxed font-medium">
-                We never compromise on Quality. Customer Satisfaction is our primary driver, 
-                enabling us to execute complex industrial orders with unwavering precision.
-              </p>
-            </div>
-
-            <div className="vision-card bg-[#F8F9FA] p-10 md:p-16 rounded-[40px] md:rounded-[70px] border border-gray-100 transition-all duration-500 flex flex-col group">
-              <div className="float-icon w-16 h-16 md:w-20 md:h-20 bg-[#0B1221] rounded-[25px] flex items-center justify-center mb-10 shadow-lg shadow-[#0B1221]/20 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-[#FFD982] text-3xl md:text-4xl">rocket_launch</span>
-              </div>
-              <h4 className="text-2xl md:text-4xl font-black text-[#0B1221] mb-6 uppercase tracking-tighter">Global Vision</h4>
-              <p className="text-gray-500 text-base md:text-lg leading-relaxed font-medium">
-                Adapting world-class technologies to provide high-quality services. We build 
-                long-term partnerships through technical superiority and reliability.
-              </p>
-            </div>
-          </div>
+    {/* Changed md:grid-cols-2 to lg:grid-cols-2.
+        Now:
+        - Mobile: 1 column
+        - iPad (md): 1 column (Stacked in different lines)
+        - Desktop (lg): 2 columns (Side-by-side)
+    */}
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-stretch">
+      
+      {/* Quality Card */}
+      <div className="vision-card bg-[#F8F9FA] p-10 md:p-16 rounded-[40px] md:rounded-[70px] border border-gray-100 transition-all duration-500 flex flex-col group">
+        <div className="float-icon w-16 h-16 md:w-20 md:h-20 bg-[#0B1221] rounded-[25px] flex items-center justify-center mb-10 shadow-lg shadow-[#0B1221]/20 group-hover:scale-110 transition-transform">
+          <span className="material-symbols-outlined text-[#FFD982] text-3xl md:text-4xl">verified</span>
         </div>
-      </section>
+        <h4 className="text-2xl md:text-4xl font-black text-[#0B1221] mb-6 uppercase tracking-tighter">Quality Standards</h4>
+        <p className="text-gray-500 text-base md:text-lg leading-relaxed font-medium">
+          We never compromise on Quality. Customer Satisfaction is our primary driver, 
+          enabling us to execute complex industrial orders with unwavering precision.
+        </p>
+      </div>
+
+      {/* Vision Card */}
+      <div className="vision-card bg-[#F8F9FA] p-10 md:p-16 rounded-[40px] md:rounded-[70px] border border-gray-100 transition-all duration-500 flex flex-col group">
+        <div className="float-icon w-16 h-16 md:w-20 md:h-20 bg-[#0B1221] rounded-[25px] flex items-center justify-center mb-10 shadow-lg shadow-[#0B1221]/20 group-hover:scale-110 transition-transform">
+          <span className="material-symbols-outlined text-[#FFD982] text-3xl md:text-4xl">rocket_launch</span>
+        </div>
+        <h4 className="text-2xl md:text-4xl font-black text-[#0B1221] mb-6 uppercase tracking-tighter">Global Vision</h4>
+        <p className="text-gray-500 text-base md:text-lg leading-relaxed font-medium">
+          Adapting world-class technologies to provide high-quality services. We build 
+          long-term partnerships through technical superiority and reliability.
+        </p>
+      </div>
+      
+    </div>
+  </div>
+</section>
     </main>
   );
 }
