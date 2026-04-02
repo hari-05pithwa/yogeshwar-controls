@@ -33,7 +33,7 @@ export default function ServiceCard({ title, image, slug }) {
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
         className="service-card group relative min-w-[300px] md:min-w-[380px]
-                   aspect-[4/5] rounded-[35px] overflow-hidden 
+                   aspect-[4/5] rounded-[30px] overflow-hidden 
                    shadow-lg cursor-pointer bg-[#0B1221]"
       >
         <div ref={bgImageRef} className="absolute inset-0 pointer-events-none">

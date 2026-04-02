@@ -14,7 +14,7 @@ const stats = [
   { number: 30, suffix: "+", label: "Skilled Experts" },
 ];
 
-const logos = Array.from({ length: 16 }, (_, i) => `/logos/logo${i + 1}.jpeg`);
+const logos = Array.from({ length: 16 }, (_, i) => `/logos/logo${i + 1}.jpg`);
 
 export default function Trust() {
   const marqueeRef = useRef(null);
@@ -76,7 +76,7 @@ export default function Trust() {
                 alt="Partner Logo"
                 fill
                 className="object-contain"
-                sizes="(max-width: 768px) 128px, 176px"
+                sizes="(max-width: 768px) 132px, 196px"
               />
             </div>
           ))}
