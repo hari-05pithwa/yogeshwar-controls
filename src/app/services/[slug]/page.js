@@ -178,20 +178,21 @@ export default function ServiceDetailPage({ params }) {
               </div>
 
               {/* TECHNICAL STANDARDS BLOCK */}
-              <div className="mt-12 md:mt-16 bg-[#F8F9FA] p-8 md:p-10 rounded-[2rem] flex flex-col md:flex-row gap-6 md:gap-10 items-center lg:items-start max-w-3xl border border-gray-100">
-                <div className="w-16 h-16 bg-[#0B1221] rounded-2xl flex items-center justify-center shrink-0 shadow-lg">
-                  <span className="material-symbols-outlined text-[#FFD982] text-3xl">verified_user</span>
-                </div>
-                <div className="text-center md:text-left">
-                  <h4 className="text-xl md:text-2xl font-black text-[#0B1221] tracking-tight mb-3">
-                    Technical standards
-                  </h4>
-                  <div className="h-1 w-12 bg-[#FFD982] mb-4 mx-auto md:mx-0"></div>
-                  <p className="text-gray-600 text-base leading-relaxed font-medium">
-                    Our operations are strictly aligned with <span className="text-[#0B1221] font-bold">IS/IEC industrial standards</span>, utilizing professional-grade calibrated instruments to guarantee safety and asset longevity.
-                  </p>
-                </div>
-              </div>
+             {/* --- TECHNICAL STANDARDS BLOCK --- */}
+<div className="mt-12 md:mt-16 bg-[#F8F9FA] p-8 md:p-10 rounded-[2rem] flex flex-col md:flex-row gap-6 md:gap-10 items-center lg:items-start max-w-3xl md:max-w-5xl lg:max-w-3xl border border-gray-100">
+  <div className="w-16 h-16 bg-[#0B1221] rounded-2xl flex items-center justify-center shrink-0 shadow-lg">
+    <span className="material-symbols-outlined text-[#FFD982] text-3xl">verified_user</span>
+  </div>
+  <div className="text-center md:text-left">
+    <h4 className="text-xl md:text-2xl font-black text-[#0B1221] tracking-tight mb-3">
+      Technical standards
+    </h4>
+    <div className="h-1 w-12 bg-[#FFD982] mb-4 mx-auto md:mx-0"></div>
+    <p className="text-gray-600 text-base leading-relaxed font-medium">
+      Our operations are strictly aligned with <span className="text-[#0B1221] font-bold">IS/IEC industrial standards</span>, utilizing professional-grade calibrated instruments to guarantee safety and asset longevity.
+    </p>
+  </div>
+</div>
             </div>
           </div>
         </div>

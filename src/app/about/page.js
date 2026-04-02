@@ -28,7 +28,6 @@ export default function About() {
       ease: "power2.out"
     }, "-=0.8");
 
-    // Smooth scroll animation for Founder Section
     gsap.from(".founder-card", {
       scrollTrigger: {
         trigger: ".founder-section",
@@ -95,10 +94,9 @@ export default function About() {
         </div>
       </section>
 
-      {/* --- REFINED: FOUNDER SECTION (AT TOP) --- */}
+      {/* --- FOUNDER SECTION --- */}
       <section className="founder-section py-20 md:py-32 bg-[#F8F9FA] relative border-b border-gray-100">
         <div className="container mx-auto px-6 md:px-16 lg:px-24">
-          
            <div className="text-center mb-16 md:mb-24">
             <SectionHeader 
                 title="Meet Our Founder" 
@@ -107,17 +105,17 @@ export default function About() {
           </div>
 
            <div className="max-w-6xl mx-auto founder-card px-2 md:px-0">
-              <div className="bg-white rounded-[1.5rem] md:rounded-[3rem] p-8 md:p-20 border border-gray-100 flex flex-col lg:flex-row items-center gap-12 md:gap-20 shadow-2xl shadow-black/5 relative overflow-hidden group">
+              {/* Changed lg:flex-row to 2xl:flex-row to stay stacked until 1536px (covering your 1279px request) */}
+              <div className="bg-white rounded-[1.5rem] md:rounded-[3rem] p-8 md:p-20 border border-gray-100 flex flex-col 2xl:flex-row items-center gap-12 md:gap-20 shadow-2xl shadow-black/5 relative overflow-hidden group">
                 
-                <div className="lg:col-span-5 relative w-full lg:w-auto">
-                   <div className="aspect-[4/5] w-full lg:w-[380px] rounded-[1.5rem] bg-[#0B1221] overflow-hidden relative">
+                <div className="relative w-full 2xl:w-auto">
+                   <div className="aspect-[4/5] w-full 2xl:w-[380px] rounded-[1.5rem] bg-[#0B1221] overflow-hidden relative mx-auto">
                       <Image 
                         src="/nileshbhai.jpeg" 
                         alt="Nilesh Mistry"
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                       />
-                      
                       <div className="absolute bottom-0 right-0 bg-[#FFD982] px-6 py-3 md:px-8 md:py-4 rounded-tl-[2rem]">
                          <p className="text-[#0B1221] font-black text-[10px] md:text-xs uppercase tracking-widest">Since 2011</p>
                       </div>
@@ -125,32 +123,25 @@ export default function About() {
                    <div className="absolute -top-4 -left-4 md:-top-6 md:-left-6 w-20 h-20 md:w-24 md:h-24 border-t-4 border-l-4 border-[#FFD982] rounded-tl-3xl -z-10"></div>
                 </div>
                 
-                <div className="lg:col-span-7">
-                  <div className="flex items-center gap-4 mb-6">
+                <div className="2xl:flex-1 text-center 2xl:text-left">
+                  <div className="flex items-center justify-center 2xl:justify-start gap-4 mb-6">
                     <div className="h-px w-12 bg-[#FFD982]"></div>
-                    <span className="text-[#0B1221]/40 font-bold uppercase tracking-[0.4em] text-[10px] md:text-xs">Executive Leadership</span>
+                    <span className="text-[#0B1221]/40 font-bold uppercase tracking-[0.4em] text-[9px] md:text-xs">Executive Leadership</span>
                   </div>
-                  
                   <h2 className="text-4xl md:text-6xl font-black text-[#0B1221] uppercase tracking-tighter mb-4">
                     Nilesh Mistry
                   </h2>
-                  <p className="text-[#0B1221] font-bold text-[13px] md:text-xl uppercase tracking-widest mb-8 md:mb-10">
+                  <p className="text-[#0B1221] font-bold text-[12px] md:text-xl uppercase tracking-widest mb-8 md:mb-10">
                     Founder <span className="text-[#FFD982] mx-2">•</span> Yogeshwar Controls
                   </p>
-                  
-                  <div className="space-y-6 text-gray-600 text-base md:text-lg leading-relaxed font-medium">
-                    <p>
-                      With a vision rooted in engineering precision, Nilesh Mistry founded Yogeshwar Controls to bridge the gap in specialized industrial electrical services. 
-                    </p>
-                    <p>
-                      A focused professional combining technical expertise and industrial insight, he leads the execution of complex orders with unwavering accuracy and superior standards.
-                    </p>
-                    <p className="border-l-4 border-[#FFD982] pl-6 md:pl-8 italic text-[#0B1221]/80">
+                  <div className="space-y-6 text-gray-600 text-[13px] md:text-lg leading-relaxed font-medium">
+                    <p className="text-left">With a vision rooted in engineering precision, Nilesh Mistry founded Yogeshwar Controls to bridge the gap in specialized industrial electrical services.</p>
+                    <p  className="text-left">A focused professional combining technical expertise and industrial insight, he leads the execution of complex orders with unwavering accuracy and superior standards.</p>
+                    <p className="border-l-4 border-[#FFD982] pl-6 md:pl-8 italic text-[#0B1221]/80 inline-block text-left">
                       "Our goal has always been to provide high-quality distribution solutions that ensure the safety and continuity of industrial operations across the landscape."
                     </p>
                   </div>
                 </div>
-
               </div>
            </div>
         </div>
@@ -159,21 +150,22 @@ export default function About() {
       {/* --- CONTENT SECTION --- */}
       <section className="py-20 md:py-32 bg-[#0B1221] text-white content-block-trigger rounded-t-[3rem] md:rounded-t-[5rem]">
         <div className="container mx-auto px-6 md:px-16 lg:px-24">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-start">
-            <div className="space-y-6 md:space-y-10">
+          {/* Changed lg:grid-cols-2 to 2xl:grid-cols-2 */}
+          <div className="grid grid-cols-1 2xl:grid-cols-2 gap-16 2xl:gap-32 items-start">
+            <div className="space-y-6 md:space-y-10 text-center 2xl:text-left">
               <div className="space-y-4">
                 <h2 className="text-white text-3xl md:text-5xl font-black leading-tight uppercase tracking-tighter">
                   The Lifeline of <br className="hidden md:block" />
                   Your Plant
                 </h2>
-                <div className="h-1.5 w-20 bg-[#FFD982]"></div>
+                <div className="h-1.5 w-20 bg-[#FFD982] mx-auto 2xl:mx-0"></div>
               </div>
               <p className="text-gray-300 text-base md:text-lg lg:text-xl leading-relaxed font-medium">
                 The low voltage distribution system is the heartbeat of any manufacturing plant. 
                 Components like <strong className="text-[#FFD982]">ACBs, MCCBs, SDFs</strong>, and protection relays are critical for 
                 switching and guarding equipment like transformers and generators.
               </p>
-              <div className="flex flex-wrap gap-2 md:gap-3 pt-2">
+              <div className="flex flex-wrap justify-center 2xl:justify-start gap-2 md:gap-3 pt-2">
                 {["Industries", "Buildings", "Utilities", "OEM Support"].map((tag) => (
                   <span key={tag} className="px-5 py-2 border border-white/20 text-white font-bold text-[10px] md:text-xs uppercase tracking-widest">
                     {tag}
@@ -184,7 +176,7 @@ export default function About() {
 
             <div className="bg-white/5 p-10 md:p-16 rounded-[40px] md:rounded-[60px] border border-white/10 relative overflow-hidden group">
               <h3 className="text-[#FFD982] text-xl md:text-2xl font-black mb-10 uppercase tracking-widest text-left">Our Capabilities</h3>
-              <ul className="space-y-6 md:space-y-8 relative z-10">
+              <ul className="space-y-6 md:space-y-8 relative z-10 text-left">
                 {[
                   "After Sales Service for HV & LV Systems",
                   "OEM Equipment Maintenance",
@@ -206,50 +198,41 @@ export default function About() {
       </section>
 
       {/* --- VISION SECTION --- */}
-     <section className="vision-section py-24 md:py-40 bg-white relative overflow-hidden">
-  <div className="container mx-auto px-6 md:px-16 lg:px-24">
-    <div className="text-center mb-16 md:mb-24">
-      <SectionHeader 
-          title="Vision & Quality" 
-          subtitle="Setting the gold standard in electrical engineering since our inception." 
-      />
-    </div>
+      <section className="vision-section py-24 md:py-40 bg-white relative overflow-hidden">
+        <div className="container mx-auto px-6 md:px-16 lg:px-24">
+          <div className="text-center mb-16 md:mb-24">
+            <SectionHeader 
+                title="Vision & Quality" 
+                subtitle="Setting the gold standard in electrical engineering since our inception." 
+            />
+          </div>
 
-    {/* Changed md:grid-cols-2 to lg:grid-cols-2.
-        Now:
-        - Mobile: 1 column
-        - iPad (md): 1 column (Stacked in different lines)
-        - Desktop (lg): 2 columns (Side-by-side)
-    */}
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-stretch">
-      
-      {/* Quality Card */}
-      <div className="vision-card bg-[#F8F9FA] p-10 md:p-16 rounded-[40px] md:rounded-[70px] border border-gray-100 transition-all duration-500 flex flex-col group">
-        <div className="float-icon w-16 h-16 md:w-20 md:h-20 bg-[#0B1221] rounded-[25px] flex items-center justify-center mb-10 shadow-lg shadow-[#0B1221]/20 group-hover:scale-110 transition-transform">
-          <span className="material-symbols-outlined text-[#FFD982] text-3xl md:text-4xl">verified</span>
-        </div>
-        <h4 className="text-2xl md:text-4xl font-black text-[#0B1221] mb-6 uppercase tracking-tighter">Quality Standards</h4>
-        <p className="text-gray-500 text-base md:text-lg leading-relaxed font-medium">
-          We never compromise on Quality. Customer Satisfaction is our primary driver, 
-          enabling us to execute complex industrial orders with unwavering precision.
-        </p>
-      </div>
+          {/* Changed lg:grid-cols-2 to 2xl:grid-cols-2 to maintain iPad layout through 1279px */}
+          <div className="grid grid-cols-1 2xl:grid-cols-2 gap-8 md:gap-12 items-stretch">
+            <div className="vision-card bg-[#F8F9FA] p-10 md:p-16 rounded-[40px] md:rounded-[70px] border border-gray-100 transition-all duration-500 flex flex-col group">
+              <div className="float-icon w-16 h-16 md:w-20 md:h-20 bg-[#0B1221] rounded-[25px] flex items-center justify-center mb-10 shadow-lg shadow-[#0B1221]/20 group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-[#FFD982] text-3xl md:text-4xl">verified</span>
+              </div>
+              <h4 className="text-2xl md:text-4xl font-black text-[#0B1221] mb-6 uppercase tracking-tighter">Quality Standards</h4>
+              <p className="text-gray-500 text-base md:text-lg leading-relaxed font-medium">
+                We never compromise on Quality. Customer Satisfaction is our primary driver, 
+                enabling us to execute complex industrial orders with unwavering precision.
+              </p>
+            </div>
 
-      {/* Vision Card */}
-      <div className="vision-card bg-[#F8F9FA] p-10 md:p-16 rounded-[40px] md:rounded-[70px] border border-gray-100 transition-all duration-500 flex flex-col group">
-        <div className="float-icon w-16 h-16 md:w-20 md:h-20 bg-[#0B1221] rounded-[25px] flex items-center justify-center mb-10 shadow-lg shadow-[#0B1221]/20 group-hover:scale-110 transition-transform">
-          <span className="material-symbols-outlined text-[#FFD982] text-3xl md:text-4xl">rocket_launch</span>
+            <div className="vision-card bg-[#F8F9FA] p-10 md:p-16 rounded-[40px] md:rounded-[70px] border border-gray-100 transition-all duration-500 flex flex-col group">
+              <div className="float-icon w-16 h-16 md:w-20 md:h-20 bg-[#0B1221] rounded-[25px] flex items-center justify-center mb-10 shadow-lg shadow-[#0B1221]/20 group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-[#FFD982] text-3xl md:text-4xl">rocket_launch</span>
+              </div>
+              <h4 className="text-2xl md:text-4xl font-black text-[#0B1221] mb-6 uppercase tracking-tighter">Global Vision</h4>
+              <p className="text-gray-500 text-base md:text-lg leading-relaxed font-medium">
+                Adapting world-class technologies to provide high-quality services. We build 
+                long-term partnerships through technical superiority and reliability.
+              </p>
+            </div>
+          </div>
         </div>
-        <h4 className="text-2xl md:text-4xl font-black text-[#0B1221] mb-6 uppercase tracking-tighter">Global Vision</h4>
-        <p className="text-gray-500 text-base md:text-lg leading-relaxed font-medium">
-          Adapting world-class technologies to provide high-quality services. We build 
-          long-term partnerships through technical superiority and reliability.
-        </p>
-      </div>
-      
-    </div>
-  </div>
-</section>
+      </section>
     </main>
   );
 }

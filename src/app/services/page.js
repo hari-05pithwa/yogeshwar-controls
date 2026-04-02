@@ -53,15 +53,9 @@ export default function ServicesPage() {
     <main ref={containerRef} className="bg-white overflow-x-hidden">
       
       {/* --- HERO SECTION --- */}
-      <section className="relative min-h-screen flex items-center bg-[#0B1221] text-white pt-20">
+      <section className="relative min-h-[80vh] flex items-center bg-[#0B1221] text-white pt-20">
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover opacity-50"
-          >
+          <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-50">
             <source src="/hero-bg.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-b from-[#0B1221]/80 via-transparent to-[#0B1221]/60"></div>
@@ -80,38 +74,38 @@ export default function ServicesPage() {
               <span className="text-[#FFD982]">Engineering.</span>
             </h1>
             <p className="text-gray-300 text-base md:text-lg lg:text-xl leading-relaxed max-w-2xl font-medium">
-              Delivering high-performance industrial electrical solutions. From preventive maintenance and energy audits to mission-critical breakdown support, we ensure your plant's power remains uninterrupted.
+              Delivering high-performance industrial electrical solutions. We ensure your plant's power remains uninterrupted through certified excellence.
             </p>
           </div>
         </div>
       </section>
 
       {/* --- SERVICES GRID SECTION --- */}
-      <section className="services-grid py-24 md:py-32 lg:py-40 bg-white">
-        <div className="container mx-auto px-8 md:px-20 lg:px-24">
+      <section className="services-grid py-20 md:py-32 bg-white">
+        <div className="container mx-auto px-6 md:px-16 lg:px-24">
           
-          <div className="mb-16 md:mb-24">
+          <div className="mb-16 md:mb-20 text-center lg:text-left">
             <h2 className="text-[#0B1221] text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-none">
               Industrial Solutions
             </h2>
-            <div className="h-1.5 w-24 bg-[#FFD982] mt-6 md:mt-8"></div>
+            <div className="h-1.5 w-24 bg-[#FFD982] mt-6 mx-auto lg:mx-0"></div>
           </div>
 
-          {/* 
-              REFINED GRID LOGIC:
-              1. Mobile/Portrait Tablet (up to 1023px): 1 column (gives cards full width to breathe)
-              2. Landscape Tablet/Desktop (1024px+): 2 columns
-              3. Large Screens (1280px+): 3 columns
-              Added large gaps (gap-16) to ensure separation.
+          {/* IMPROVED GRID & SIZING LOGIC:
+              1. Added 'max-w-md' and 'mx-auto' to service items to keep them from getting too wide.
+              2. Used responsive aspect ratios to prevent images from becoming overly tall.
           */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-12 md:gap-16 lg:gap-12 xl:gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 md:gap-12 lg:gap-16">
             {allServices.map((service, index) => (
-              <div key={index} className="service-item h-full">
-                <ServiceCard 
-                  title={service.title} 
-                  image={service.image} 
-                  slug={service.slug} 
-                />
+              <div key={index} className="service-item flex justify-center w-full">
+                <div className="w-full max-w-[420px] lg:max-w-none">
+                   {/* We pass the slug and data to the card; ensure the card itself handles a nice aspect ratio */}
+                   <ServiceCard 
+                    title={service.title} 
+                    image={service.image} 
+                    slug={service.slug} 
+                  />
+                </div>
               </div>
             ))}
           </div>
@@ -119,13 +113,13 @@ export default function ServicesPage() {
       </section>
 
       {/* --- CTA SECTION --- */}
-      <section className="py-24 md:py-32 bg-[#F8F9FA] border-t border-gray-100">
+      <section className="py-24 bg-[#F8F9FA] border-t border-gray-100">
         <div className="container mx-auto px-6 text-center">
           <div className="max-w-3xl mx-auto">
-            <h3 className="text-[#0B1221] text-3xl md:text-5xl lg:text-6xl font-black uppercase mb-8 leading-tight tracking-tight">
+            <h3 className="text-[#0B1221] text-3xl md:text-5xl font-black uppercase mb-8 leading-tight tracking-tight">
               Need a Technical <span className="text-[#0B1221]">Evaluation?</span>
             </h3>
-            <p className="text-gray-600 font-bold text-lg md:text-xl mb-12 leading-relaxed">
+            <p className="text-gray-600 font-bold text-lg md:text-xl mb-12">
               Our engineering team provides comprehensive audits and breakdown support across industrial landscapes.
             </p>
             <a 
@@ -137,7 +131,6 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-
     </main>
   );
 }
