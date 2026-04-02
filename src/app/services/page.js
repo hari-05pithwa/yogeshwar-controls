@@ -81,37 +81,42 @@ export default function ServicesPage() {
   </div>
 </section>
 
-      {/* --- SERVICES GRID SECTION --- */}
-      <section className="services-grid py-20 md:py-32 bg-white">
-        <div className="container mx-auto px-6 md:px-16 lg:px-24">
-          
-          <div className="mb-16 md:mb-20 text-center lg:text-left">
-            <h2 className="text-[#0B1221] text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-none">
-              Industrial Solutions
-            </h2>
-            <div className="h-1.5 w-24 bg-[#FFD982] mt-6 mx-auto lg:mx-0"></div>
-          </div>
+     {/* --- SERVICES GRID SECTION --- */}
+<section className="services-grid py-20 md:py-32 bg-white">
+  {/* Standardizing horizontal padding for better symmetry */}
+  <div className="container mx-auto px-6 md:px-16 lg:px-24">
+    
+    <div className="mb-16 md:mb-20 text-center xl:text-left">
+      <h2 className="text-[#0B1221] text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-none">
+        Industrial Solutions
+      </h2>
+      <div className="h-1.5 w-24 bg-[#FFD982] mt-6 mx-auto xl:mx-0"></div>
+    </div>
 
-          {/* IMPROVED GRID & SIZING LOGIC:
-              1. Added 'max-w-md' and 'mx-auto' to service items to keep them from getting too wide.
-              2. Used responsive aspect ratios to prevent images from becoming overly tall.
+    {/* LOGIC UPDATED:
+        - grid-cols-1: Default for Mobile AND iPad (both portrait & horizontal).
+        - xl:grid-cols-2: Side-by-side only starts at 1280px+.
+        - 2xl:grid-cols-3: Three columns only for very large screens.
+    */}
+    <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-12 md:gap-16">
+      {allServices.map((service, index) => (
+        <div key={index} className="service-item flex justify-center w-full">
+          {/* Capping the width at 600px for iPad Horizontal. 
+              This prevents the card from stretching across the entire 1024px width, 
+              which would make it look "huge" or "overly big".
           */}
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 md:gap-12 lg:gap-16">
-            {allServices.map((service, index) => (
-              <div key={index} className="service-item flex justify-center w-full">
-                <div className="w-full max-w-[420px] lg:max-w-none">
-                   {/* We pass the slug and data to the card; ensure the card itself handles a nice aspect ratio */}
-                   <ServiceCard 
-                    title={service.title} 
-                    image={service.image} 
-                    slug={service.slug} 
-                  />
-                </div>
-              </div>
-            ))}
+          <div className="w-full max-w-[450px] md:max-w-[600px] xl:max-w-none">
+             <ServiceCard 
+              title={service.title} 
+              image={service.image} 
+              slug={service.slug} 
+            />
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* --- CTA SECTION --- */}
       <section className="py-24 bg-[#F8F9FA] border-t border-gray-100">
