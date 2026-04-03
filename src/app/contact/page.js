@@ -154,7 +154,7 @@ export default function ContactPage() {
             <div className="flex items-center justify-center gap-4 py-8">
                <div className="h-[1px] w-8 bg-gray-200"></div>
                <p className="text-[10px] font-black uppercase tracking-[0.1em] text-[#0B1221]">
-                 <span className="text-[11px] md:text-xl">{activeLabel}</span>
+                 <span className="text-[9px] md:text-xl">{activeLabel}</span>
                </p>
                <div className="h-[1px] w-8 bg-gray-200"></div>
             </div>
