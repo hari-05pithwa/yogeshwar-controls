@@ -117,7 +117,7 @@ export default function ContactForm() {
   };
 
   return (
-    <section ref={sectionRef} className="md: bg-white px-6 relative">
+    <section ref={sectionRef} className="mb:10 bg-white px-6 relative">
       
       {/* RESPONSIVE SMOOTH ALERT */}
       {alertMsg.show && (
