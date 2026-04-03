@@ -103,47 +103,60 @@ export default function About() {
                 subtitle="The technical vision driving our industrial excellence." 
             />
           </div>
-
-           <div className="max-w-6xl mx-auto founder-card px-2 md:px-0">
-              {/* Changed lg:flex-row to 2xl:flex-row to stay stacked until 1536px (covering your 1279px request) */}
-              <div className="bg-white rounded-[1.5rem] md:rounded-[3rem] p-8 md:p-20 border border-gray-100 flex flex-col 2xl:flex-row items-center gap-12 md:gap-20 shadow-2xl shadow-black/5 relative overflow-hidden group">
-                
-                <div className="relative w-full 2xl:w-auto">
-                   <div className="aspect-[4/5] w-full 2xl:w-[380px] rounded-[1.5rem] bg-[#0B1221] overflow-hidden relative mx-auto">
-                      <Image 
-                        src="/nileshbhai.jpeg" 
-                        alt="Nilesh Mistry"
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                      <div className="absolute bottom-0 right-0 bg-[#FFD982] px-6 py-3 md:px-8 md:py-4 rounded-tl-[2rem]">
-                         <p className="text-[#0B1221] font-black text-[10px] md:text-xs uppercase tracking-widest">Since 2011</p>
-                      </div>
-                   </div>
-                   <div className="absolute -top-4 -left-4 md:-top-6 md:-left-6 w-20 h-20 md:w-24 md:h-24 border-t-4 border-l-4 border-[#FFD982] rounded-tl-3xl -z-10"></div>
-                </div>
-                
-                <div className="2xl:flex-1 text-center 2xl:text-left">
-                  <div className="flex items-center justify-center 2xl:justify-start gap-4 mb-6">
-                    <div className="h-px w-12 bg-[#FFD982]"></div>
-                    <span className="text-[#0B1221]/40 font-bold uppercase tracking-[0.4em] text-[9px] md:text-xs">Executive Leadership</span>
-                  </div>
-                  <h2 className="text-4xl md:text-6xl font-black text-[#0B1221] uppercase tracking-tighter mb-4">
-                    Nilesh Mistry
-                  </h2>
-                  <p className="text-[#0B1221] font-bold text-[12px] md:text-xl uppercase tracking-widest mb-8 md:mb-10">
-                    Founder <span className="text-[#FFD982] mx-2">•</span> Yogeshwar Controls
-                  </p>
-                  <div className="space-y-6 text-gray-600 text-[13px] md:text-lg leading-relaxed font-medium">
-                    <p className="text-left">With a vision rooted in engineering precision, Nilesh Mistry founded Yogeshwar Controls to bridge the gap in specialized industrial electrical services.</p>
-                    <p  className="text-left">A focused professional combining technical expertise and industrial insight, he leads the execution of complex orders with unwavering accuracy and superior standards.</p>
-                    <p className="border-l-4 border-[#FFD982] pl-6 md:pl-8 italic text-[#0B1221]/80 inline-block text-left">
-                      "Our goal has always been to provide high-quality distribution solutions that ensure the safety and continuity of industrial operations across the landscape."
-                    </p>
-                  </div>
-                </div>
-              </div>
-           </div>
+{/* --- FOUNDER CARD --- */}
+<div className="max-w-6xl mx-auto founder-card px-4 md:px-10 xl:px-0">
+  {/* 1. flex-col: Default (Mobile & Tablet & Laptop up to 1279px) 
+      2. xl:flex-row: Switches to side-by-side at 1280px+
+  */}
+  <div className="bg-white rounded-[2.5rem] md:rounded-[3.5rem] p-8 md:p-14 xl:p-20 border border-gray-100 flex flex-col xl:flex-row items-center xl:items-start gap-12 xl:gap-20 shadow-2xl shadow-black/5 relative overflow-hidden group">
+    
+    {/* Left Side: Image Container */}
+    <div className="relative shrink-0 w-full max-w-[320px] md:max-w-[400px] xl:w-[380px]">
+      <div className="relative w-full">
+        <div className="aspect-[4/5] rounded-[1.5rem] bg-[#0B1221] overflow-hidden relative shadow-2xl z-10">
+          <Image 
+            src="/nileshbhai.jpeg" 
+            alt="Nilesh Mistry"
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            priority
+          />
+          <div className="absolute bottom-0 right-0 bg-[#FFD982] px-6 py-3 md:px-8 md:py-4 rounded-tl-[2rem] z-20">
+            <p className="text-[#0B1221] font-black text-[10px] md:text-xs uppercase tracking-widest">Since 2011</p>
+          </div>
+        </div>
+        {/* Gold Frame Decoration */}
+        <div className="absolute -top-4 -left-4 md:-top-6 md:-left-6 w-20 h-20 md:w-24 md:h-24 border-t-4 border-l-4 border-[#FFD982] rounded-tl-3xl z-0"></div>
+      </div>
+    </div>
+    
+    {/* Right Side: Text Content */}
+    {/* text-center stays active until xl (1280px) */}
+    <div className="flex-1 text-center xl:text-left mt-6 xl:mt-0">
+      <div className="flex items-center justify-center xl:justify-start gap-4 mb-6">
+        <div className="h-px w-12 bg-[#FFD982]"></div>
+        <span className="text-[#0B1221]/40 font-bold uppercase tracking-[0.4em] text-[10px] md:text-xs">Executive Leadership</span>
+      </div>
+      
+      <h2 className="text-4xl md:text-5xl xl:text-6xl font-black text-[#0B1221] uppercase tracking-tighter mb-4 leading-tight">
+        Nilesh Mistry
+      </h2>
+      
+      <p className="text-[#0B1221] font-bold text-[12px] md:text-lg xl:text-xl uppercase tracking-widest mb-8 md:mb-10">
+        Founder <span className="text-[#FFD982] mx-2">•</span> Yogeshwar Controls
+      </p>
+      
+      <div className="space-y-6 text-gray-600 text-sm md:text-base xl:text-lg leading-relaxed font-medium text-left">
+        <p>With a vision rooted in engineering precision, Nilesh Mistry founded Yogeshwar Controls to bridge the gap in specialized industrial electrical services.</p>
+        <p className="hidden md:block">A focused professional combining technical expertise and industrial insight, he leads the execution of complex orders with unwavering accuracy and superior standards.</p>
+        
+        <div className="border-l-4 border-[#FFD982] pl-6 md:pl-8 italic text-[#0B1221]/80 mt-8">
+          "Our goal has always been to provide high-quality distribution solutions that ensure the safety and continuity of industrial operations across the landscape."
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
         </div>
       </section>
 
