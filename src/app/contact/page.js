@@ -111,7 +111,7 @@ export default function ContactPage() {
                 
                 {/* REGISTERED OFFICE */}
                 <div className="group">
-                  <p className="text-[#0B1221] font-black uppercase text-[10px] tracking-[0.3em] mb-4 flex items-center gap-2">
+                  <p className="text-[#0B1221] font-black uppercase text-[12px] tracking-[0.3em] mb-4 flex items-center gap-2">
                     <span className={`w-1.5 h-1.5 ${activeKey === 'registered' ? 'bg-[#FFD982]' : 'bg-gray-300'}`}></span> Registered Office
                   </p>
                   <address className="not-italic text-gray-500 font-bold text-base md:text-lg leading-relaxed border-l-2 border-gray-100 pl-4 mb-6">
@@ -127,7 +127,7 @@ export default function ContactPage() {
 
                 {/* POSTAL CORRESPONDENCE */}
                 <div className="group">
-                  <p className="text-[#0B1221] font-black uppercase text-[10px] tracking-[0.3em] mb-4 flex items-center gap-2">
+                  <p className="text-[#0B1221] font-black uppercase text-[12px] tracking-[0.3em] mb-4 flex items-center gap-2">
                     <span className={`w-1.5 h-1.5 ${activeKey === 'postal' ? 'bg-[#FFD982]' : 'bg-gray-300'}`}></span> Postal Correspondence
                   </p>
                   <address className="not-italic text-gray-500 font-bold text-base md:text-lg leading-relaxed border-l-2 border-gray-100 pl-4 mb-6">
