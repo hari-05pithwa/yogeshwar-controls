@@ -135,14 +135,14 @@ export default function About() {
     <div className="flex-1 text-center xl:text-left mt-6 xl:mt-0">
       <div className="flex items-center justify-center xl:justify-start gap-4 mb-6">
         <div className="h-px w-12 bg-[#FFD982]"></div>
-        <span className="text-[#0B1221]/40 font-bold uppercase tracking-[0.4em] text-[10px] md:text-xs">Executive Leadership</span>
+        <span className="text-[#0B1221]/40 font-bold uppercase tracking-[0.4em] text-[8px] md:text-xs">Executive Leadership</span>
       </div>
       
-      <h2 className="text-4xl md:text-5xl xl:text-6xl font-black text-[#0B1221] uppercase tracking-tighter mb-4 leading-tight">
+      <h2 className="text-3xl md:text-5xl xl:text-6xl font-black text-[#0B1221] uppercase tracking-tighter mb-4 leading-tight">
         Nilesh Mistry
       </h2>
       
-      <p className="text-[#0B1221] font-bold text-[12px] md:text-lg xl:text-xl uppercase tracking-widest mb-8 md:mb-10">
+      <p className="text-[#0B1221] font-bold text-[10px] md:text-lg xl:text-xl uppercase tracking-widest mb-8 md:mb-10">
         Founder <span className="text-[#FFD982] mx-2">•</span> Yogeshwar Controls
       </p>
       

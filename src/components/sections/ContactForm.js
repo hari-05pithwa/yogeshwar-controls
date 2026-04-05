@@ -58,7 +58,7 @@ export default function ContactForm() {
   }, [alertMsg.show]);
 
   const validateForm = () => {
-    const { from_name, from_email, mobile_number } = formData;
+    const { from_name, from_email, mobile_number, message } = formData;
 
     if (from_name.trim().length < 2) {
       showAlert("Please enter your full name.");
@@ -73,6 +73,12 @@ export default function ContactForm() {
 
     if (mobile_number.length !== 10) {
       showAlert("Phone number must be exactly 10 digits.");
+      return false;
+    }
+
+    // --- Added Validation for Message Field ---
+    if (message.trim().length === 0) {
+      showAlert("Please enter your message.");
       return false;
     }
 
@@ -127,7 +133,7 @@ export default function ContactForm() {
             className="pointer-events-auto flex items-center gap-4 bg-[#0B1221] border border-white/10 text-white px-5 py-4 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.4)] min-w-[300px]"
           >
             <div className="w-8 h-8 rounded-full bg-[#FFD982] flex items-center justify-center shrink-0">
-               <span className="material-symbols-outlined text-[#0B1221] text-[18px] font-bold">priority_high</span>
+                <span className="material-symbols-outlined text-[#0B1221] text-[18px] font-bold">priority_high</span>
             </div>
             
             <p className="text-sm font-bold tracking-tight flex-1">{alertMsg.text}</p>
@@ -186,6 +192,7 @@ export default function ContactForm() {
                 </div>
 
                 <textarea
+                  required
                   value={formData.message}
                   placeholder="Message..."
                   rows={6}
@@ -208,10 +215,10 @@ export default function ContactForm() {
             </div>
           ) : (
             <div className="success-message flex flex-col items-center justify-center text-center py-12 px-8 w-full max-w-xl mx-auto bg-[#0B1221] border border-white/10 rounded-[2rem] shadow-2xl relative overflow-hidden">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6 shadow-lg shadow-[#FFD982]/20">
+              <div className="w-16 h-16 bg-[#FFD982] rounded-full flex items-center justify-center mb-6 shadow-lg shadow-[#FFD982]/20">
                 <span className="material-symbols-outlined text-[#0B1221] text-4xl font-bold">check</span>
               </div>
-              <h2 className="text-primary text-2xl font-black uppercase tracking-tight mb-2">Message Sent</h2>
+              <h2 className="text-[#FFD982] text-2xl font-black uppercase tracking-tight mb-2">Message Sent</h2>
               <p className="text-white/80 leading-relaxed mb-8">
                 Thank you, <b>{formData.from_name}</b>. We have received your details and will contact you on <b>{formData.mobile_number}</b> soon.
               </p>
@@ -220,7 +227,7 @@ export default function ContactForm() {
                   setFormData({ from_name: "", from_email: "", mobile_number: "", message: "" });
                   setIsSubmitted(false);
                 }}
-                className="text-primary text-xs font-bold uppercase tracking-widest border-b border-[#FFD982]/30 pb-1 hover:text-white transition-all"
+                className="text-[#FFD982] text-xs font-bold uppercase tracking-widest border-b border-[#FFD982]/30 pb-1 hover:text-white transition-all"
               >
                 Send Another Message
               </button>
