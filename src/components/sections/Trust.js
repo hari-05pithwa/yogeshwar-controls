@@ -14,15 +14,23 @@ const stats = [
   { number: 30, suffix: "+", label: "Skilled Experts" },
 ];
 
+// Individual scaling for all 30 logos to ensure perfect visual balance
 const logosData = [
   { src: "/logos/logo1.jpg", scale: 1.0 }, { src: "/logos/logo2.jpg", scale: 1.0 },
   { src: "/logos/logo3.jpg", scale: 1.1 }, { src: "/logos/logo4.jpg", scale: 1.5 },
-  { src: "/logos/logo5.jpg", scale: 1.5 }, { src: "/logos/logo6.jpg", scale: 1.4 },
+  { src: "/logos/logo5.jpg", scale: 1.5 }, { src: "/logos/logo6.jpg", scale: 1.5 },
   { src: "/logos/logo7.jpg", scale: 1.0 }, { src: "/logos/logo8.jpg", scale: 1.0 },
   { src: "/logos/logo9.jpg", scale: 1.0 }, { src: "/logos/logo10.jpg", scale: 1.3 },
-  { src: "/logos/logo11.jpg", scale: 1.4 }, { src: "/logos/logo12.jpg", scale: 1.0 },
+  { src: "/logos/logo11.jpg", scale: 1.5 }, { src: "/logos/logo12.jpg", scale: 1.0 },
   { src: "/logos/logo13.jpg", scale: 1.0 }, { src: "/logos/logo14.jpg", scale: 1.0 },
-  { src: "/logos/logo15.jpg", scale: 1.0 }, { src: "/logos/logo16.jpg", scale: 1.0},
+  { src: "/logos/logo15.jpg", scale: 1.0 }, { src: "/logos/logo16.jpg", scale: 1.0 },
+  { src: "/logos/logo17.jpg", scale: 1.0 }, { src: "/logos/logo18.jpg", scale: 0.8 },
+  { src: "/logos/logo19.jpg", scale: 1.5 }, { src: "/logos/logo20.jpg", scale: 1.5 },
+  { src: "/logos/logo21.jpg", scale: 1.0 }, { src: "/logos/logo22.jpg", scale: 1.0 },
+  { src: "/logos/logo23.jpg", scale: 1.0 }, { src: "/logos/logo24.jpg", scale: 1.0 },
+  { src: "/logos/logo25.jpg", scale: 1.0 }, { src: "/logos/logo26.jpg", scale: 1.0 },
+  { src: "/logos/logo27.jpg", scale: 1.8 }, { src: "/logos/logo28.jpg", scale: 1.0 },
+  { src: "/logos/logo29.jpg", scale: 0.8 }, { src: "/logos/logo30.jpg", scale: 1.1 },
 ];
 
 export default function Trust() {
@@ -30,13 +38,12 @@ export default function Trust() {
   const row2Ref = useRef(null);
   const row3Ref = useRef(null);
 
-  // Distribute logos evenly and randomize for each row
+  // Distribute logos into 3 unique rows (10 logos per row)
   const rowLogos = useMemo(() => {
-    const shuffled = [...logosData].sort(() => Math.random() - 0.5);
     return [
-      [...shuffled.slice(0, 6)],
-      [...shuffled.slice(5, 11)], // slightly overlapping to keep counts similar
-      [...shuffled.slice(10, 16)]
+      [...logosData.slice(0, 10)],
+      [...logosData.slice(10, 20)],
+      [...logosData.slice(20, 30)]
     ];
   }, []);
 
@@ -50,7 +57,7 @@ export default function Trust() {
         {
           xPercent: isRight ? 0 : -50,
           repeat: -1,
-          duration: 30,
+          duration: 125, // Keep the slow, premium speed
           ease: "none",
         }
       );
@@ -90,21 +97,21 @@ export default function Trust() {
       <div 
         className="relative mt-12 flex flex-col gap-10 md:gap-12 py-10"
         style={{
-          maskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)',
-          WebkitMaskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)'
+          maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)'
         }}
       >
         {[row1Ref, row2Ref, row3Ref].map((ref, rowIndex) => (
           <div key={rowIndex} className="overflow-hidden flex">
             <div ref={ref} className="flex whitespace-nowrap">
-              {/* Tripling the array ensures smooth infinite transition */}
+              {/* Tripling for infinite seamless loop */}
               {[...rowLogos[rowIndex], ...rowLogos[rowIndex], ...rowLogos[rowIndex]].map((logo, index) => (
-                <div key={index} className="flex-shrink-0 px-6 md:px-12 flex items-center justify-center">
+                <div key={index} className="flex-shrink-0 px-8 py-4 md:px-16 flex items-center justify-center">
                   <div 
                     className="relative"
                     style={{ 
-                      width: '160px', 
-                      height: '80px', 
+                      width: '180px', 
+                      height: '90px', 
                       transform: `scale(${logo.scale || 1})` 
                     }}
                   >
@@ -113,7 +120,7 @@ export default function Trust() {
                       alt="Client Logo"
                       fill
                       className="object-contain"
-                      sizes="160px"
+                      sizes="180px"
                     />
                   </div>
                 </div>
@@ -158,22 +165,3 @@ function StatCounter({ value }) {
     </span>
   );
 }
-
-
-
-//  { src: "/logos/logo1.jpg", scale: 1.0 },
-//   { src: "/logos/logo2.jpg", scale: 1.0 },
-//   { src: "/logos/logo3.jpg", scale: 1.1 },
-//   { src: "/logos/logo4.jpg", scale: 1.6 },
-//   { src: "/logos/logo5.jpg", scale: 1.6 },
-//   { src: "/logos/logo6.jpg", scale: 1.5 },
-//   { src: "/logos/logo7.jpg", scale: 1.0 },
-//   { src: "/logos/logo8.jpg", scale: 1.0 },
-//   { src: "/logos/logo9.jpg", scale: 1.0 },
-//   { src: "/logos/logo10.jpg", scale: 1.4 },
-//   { src: "/logos/logo11.jpg", scale: 1.5 }, 
-//   { src: "/logos/logo12.jpg", scale: 1.0 },
-//   { src: "/logos/logo13.jpg", scale: 1.0 },
-//   { src: "/logos/logo14.jpg", scale: 1.0 },
-//   { src: "/logos/logo15.jpg", scale: 1.2 }, 
-//   { src: "/logos/logo16.jpg", scale: 1.3 },
